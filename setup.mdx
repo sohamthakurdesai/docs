@@ -1,0 +1,55 @@
+---
+title: "Setup"
+---
+
+# FreeBSD 13.5-RELEASE installed using the following iso image 
+
+FreeBSD-13.5-RELEASE-amd64-dvd1.iso
+
+# Creating the ZFS Boot Environments BEs
+
+## Sanity Commands
+
+zfs list - To ensure ZFS is present
+
+freebasd-version —\> This will show 13.5-RELEASE
+
+## Install the BE tools
+
+pkg install beadm
+
+beadm list
+
+## Create a new Boot Environment for 14.3
+
+beadm create freebsd-14.3
+
+beadm mount freebsd-14.3 /mnt
+
+## Update the BE to FreeBSD 14.3
+
+freebsd-update -b /mnt upgrade -r 14.3-RELEASE
+
+freebsd-update -b /mnt install
+
+## Post Installation
+
+beadm umount freebsd-14.3
+
+beadm activate freebsd-14.3
+
+beadm list
+
+reboot
+
+## Post Reboot
+
+freebsd-version -k shows 14.3-RELEASE-p8
+
+freebsd-version -u shows 13.5-RELEASE
+
+Kernel is 14.3 userland is still 13.5
+
+freebsd-update fetch
+
+freebsd-update install
