@@ -13,7 +13,9 @@ wget -c https://download.freebsd.org/releases/amd64/amd64/ISO-IMAGES/14.3/FreeBS
 # Extract the image from the .xz file
 unxz -k FreeBSD-14.3-RELEASE-amd64-dvd1.iso.xz
 # Burn it on an USB
-xzcat FreeBSD-14.3-RELEASE-amd64-dvd1.iso.xz | sudo dd of=/dev/sdX bs=1M status=progress conv=fsync
+sudo dd if=FreeBSD-14.3-RELEASE-amd64-dvd1.iso of=/dev/sdX bs=4M status=progress oflag=sync
+# Eject the USB
+udisksctl power-off --block-device /dev/sdX
 ```
 
 # Creating the ZFS Boot Environments BEs
