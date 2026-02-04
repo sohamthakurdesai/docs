@@ -6,6 +6,16 @@ title: "Setup"
 
 FreeBSD-13.5-RELEASE-amd64-dvd1.iso
 
+```shellscript
+# Download the FreeBSD ISO Image XZ file
+wget -c https://download.freebsd.org/releases/amd64/amd64/ISO-IMAGES/14.3/FreeBSD-14.3-RELEASE-amd64-dvd1.iso.xz
+
+# Extract the image from the .xz file
+unxz -k FreeBSD-14.3-RELEASE-amd64-dvd1.iso.xz
+# Burn it on an USB
+xzcat FreeBSD-14.3-RELEASE-amd64-dvd1.iso.xz | sudo dd of=/dev/sdX bs=1M status=progress conv=fsync
+```
+
 # Creating the ZFS Boot Environments BEs
 
 ## Sanity Commands
