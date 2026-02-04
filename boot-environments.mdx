@@ -1,0 +1,41 @@
+---
+title: "Boot Environments"
+description: "This document provides the steps to create Boot Environments in FreeBSD"
+---
+
+## Check ZFS Compatibility
+
+```shellscript
+zfs list
+```
+
+## Update current 13.5
+
+```shellscript
+freebsd-update fetch install
+```
+
+## Creating the New Boot Environment
+
+```shellscript
+# 1. Create a new boot environment for the 14.3 upgrade
+bectl create 14.3-RELEASE
+
+# 2. Mount the new environment to /mnt
+bectl mount 14.3-RELEASE /mnt
+
+# 3. Fetch the FreeBSD 14.3-RELEASE files (Pointed to the /mnt base)
+# Note: This will prompt you to merge configuration files—follow the on-screen instructions.
+freebsd-update -b /mnt -r 14.3-RELEASE upgrade
+
+# 4. Install the upgraded files into the new environment
+# Note: You may need to run this twice if prompted by the installer.
+freebsd-update -b /mnt install
+
+# 5. Unmount the environment and set it as the active boot target
+bectl umount 14.3-RELEASE
+bectl activate 14.3-RELEASE
+
+# 6. Reboot into your new 14.3 environment
+shutdown -r now
+```
