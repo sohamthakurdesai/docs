@@ -10,6 +10,8 @@ FreeBSD-14.3-RELEASE-amd64-dvd1.iso
 # Download the FreeBSD ISO Image XZ file
 wget -c https://download.freebsd.org/releases/amd64/amd64/ISO-IMAGES/14.3/FreeBSD-14.3-RELEASE-amd64-dvd1.iso.xz
 
+aria2c -c -x 16 -s 16 -k 1M https://download.freebsd.org/releases/amd64/amd64/ISO-IMAGES/14.3/FreeBSD-14.3-RELEASE-amd64-dvd1.iso.xz
+
 # Extract the image from the .xz file
 unxz -k FreeBSD-14.3-RELEASE-amd64-dvd1.iso.xz
 # Burn it on an USB
