@@ -1,0 +1,129 @@
+---
+title: "Checklist"
+---
+
+## Thermal
+
+```shellscript
+# ---- One-shot thermal sanity check ----
+
+watch -n 1 sensors
+# Observe idle temps for ~2 minutes
+# Expected (idle, laptop plugged in):
+#   CPU: ~35–50°C
+#   NVMe: ~30–55°C
+
+# ---- Load CPU + disk briefly (safe, short) ----
+
+stress-ng --cpu 0 --timeout 60s
+# CPU should climb smoothly, not spike violently
+# Expected peak: ~70–90°C
+# Fans should ramp up, then settle
+
+fio --name=thermtest --rw=read --bs=1M --size=5G --runtime=60 --group_reporting
+# NVMe should stay <70°C
+# Throttling usually starts >75–80°C
+
+# ---- Check for throttling events ----
+
+journalctl -k | grep -i thermal
+# Should show nothing scary (no critical throttling messages)
+
+# ---- Optional quick check ----
+
+cat /sys/class/thermal/thermal_zone*/type
+cat /sys/class/thermal/thermal_zone*/temp
+# Raw kernel thermal zones (divide by 1000 for °C)
+```
+
+## General Checklist
+
+```shellscript
+# ===============================
+# NEW LAPTOP BRING-UP CHECKLIST
+# ===============================
+
+# ---- Firmware / BIOS / Platform ----
+fwupdmgr get-devices          # Detect firmware-updatable components (BIOS, SSD, USB controllers)
+fwupdmgr refresh              # Refresh firmware metadata
+fwupdmgr get-updates          # Check for available firmware updates
+fwupdmgr update               # Apply firmware updates (reboot required)
+
+# ---- Disk & Storage ----
+lsblk -o NAME,SIZE,TYPE,MOUNTPOINT,FSTYPE    # Verify disk capacity, partitions, and mount points
+df -hT                                       # Check filesystem usage and types
+sudo blkid                                   # Verify filesystem UUIDs and labels
+sudo smartctl -a /dev/nvme0n1                # Check SSD/NVMe health (replace device if needed)
+sudo hdparm -Tt /dev/nvme0n1                 # Quick disk read speed test (non-destructive)
+fio --name=readtest --rw=read --bs=1M --size=2G --numjobs=1 --runtime=60 --group_reporting   # Disk read benchmark
+fio --name=writetest --rw=write --bs=1M --size=2G --numjobs=1 --runtime=60 --group_reporting  # Disk write benchmark
+
+# ---- CPU / RAM ----
+lscpu                                        # Verify CPU model, cores, virtualization flags
+free -h                                     # Check total RAM and swap
+vmstat -s                                   # Memory statistics sanity check
+
+# ---- Power / Battery ----
+upower -e                                   # List power devices
+upower -i $(upower -e | grep BAT)           # Detailed battery health and charge cycles
+tlp-stat -s                                 # Check TLP power management status
+tlp-stat -b                                 # Verify battery charge thresholds
+
+# Add in /etc/tlp.conf
+# Battery charge level below which charging will begin.
+START_CHARGE_THRESH_BAT0=75
+# Battery charge level above which charging will stop.
+STOP_CHARGE_THRESH_BAT0=80
+
+# ---- Thermals ----
+sudo sensors-detect                          # Detect temperature sensors
+sensors                                     # Monitor CPU/GPU temperatures
+watch -n 1 cat /proc/thermal/thermal_zone*/temp   # Raw thermal readings (fallback)
+
+# ---- GPU / Display ----
+lspci -k | grep -EA3 'VGA|3D|Display'        # Verify GPU driver in use
+glxinfo | grep "OpenGL renderer"             # Confirm hardware acceleration
+xrandr                                      # Check display resolution and refresh rate
+
+# ---- Networking ----
+ip a                                        # Verify wired and wireless interfaces
+ip route                                    # Check default route
+resolvectl status                           # DNS configuration check
+nmcli device status                         # NetworkManager device state
+ethtool eth0                                # Wired link speed and duplex (adjust interface name)
+
+# ---- Kernel / Boot Health ----
+uname -r                                    # Verify running kernel version
+journalctl -p 3 -xb                         # Check boot-time errors
+systemd-analyze time                        # Measure boot time
+systemd-analyze blame                       # Identify slow services
+
+# ---- Virtualization ----
+egrep -c '(vmx|svm)' /proc/cpuinfo          # Confirm CPU virtualization support
+lsmod | grep kvm                            # Verify KVM modules loaded
+virsh list --all                            # Confirm libvirt is functional
+
+# ---- Containers ----
+docker info                                 # Verify Docker daemon health
+podman info                                 # Verify Podman health (if used)
+
+# ---- Development Baseline ----
+git --version                               # Verify git availability
+node -v                                     # Verify Node.js
+java -version                               # Verify Java runtime
+python3 --version                           # Verify Python
+rustc --version                             # Verify Rust toolchain
+go version                                  # Verify Go (optional)
+
+# ---- Filesystem & Lab Structure ----
+mkdir -p ~/lab/{00_docs,01_systems,02_backend,03_frontend,04_data,05_iot_iiot,06_ai_rag,07_devops,08_sandbox,_archive}   # Create canonical lab structure
+ls ~/lab                                   # Verify lab structure
+
+# ---- Security / Time ----
+timedatectl status                          # Verify system clock and NTP sync
+ufw status                                  # Firewall status (if ufw is used)
+ssh-keygen -t ed25519                       # Generate SSH key for dev access
+
+# ---- Final Sanity ----
+neofetch                                    # One-glance system summary
+```

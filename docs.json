@@ -28,6 +28,12 @@
         "tab": "Guides",
         "groups": [
           {
+            "group": "ThinkPadT14_Setup",
+            "pages": [
+              "checklist"
+            ]
+          },
+          {
             "group": "FreeBSD",
             "pages": [
               "networking",
