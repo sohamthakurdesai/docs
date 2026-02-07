@@ -36,6 +36,7 @@
           {
             "group": "FreeBSD",
             "pages": [
+              "development-tooling",
               "networking",
               "boot-environments",
               "setup"
