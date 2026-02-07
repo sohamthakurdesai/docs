@@ -28,6 +28,10 @@
         "tab": "Guides",
         "groups": [
           {
+            "group": "IIoT_Edge_Historian",
+            "pages": []
+          },
+          {
             "group": "ThinkPadT14_Setup",
             "pages": [
               "checklist"
