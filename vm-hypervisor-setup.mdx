@@ -17,3 +17,25 @@ sudo usermod -aG libvirt,kvm sohamthakurdesai
 
 logout
 ```
+
+## Setting up the VM
+
+1. Use virt-manager to start the GUI
+2. Select the FreeBSD 14.3 ISO image and follow the instructions
+3. If the OS is not auto detected and if FreeBSD is not listed then select Generic Linux 2024 for better base hardware configuration.
+
+### Configurations
+
+1. RAM = 4 GB
+2. CPU = 2
+3. Disk = 50 GB
+4. Chipset - Q35
+5. Firmware - BIOS
+6. Enable host-passthrough
+7. Boot Options Order
+   1. SATA CDROM1
+   2. VirtIO Disk 1
+1. Disk Bus - VirtIO
+2. Network - NAT
+8. Device Model - virtio
+9. Display - Spice Server
