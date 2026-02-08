@@ -28,6 +28,12 @@
         "tab": "Guides",
         "groups": [
           {
+            "group": "LokmanyaRAG",
+            "pages": [
+              "pdf-operations"
+            ]
+          },
+          {
             "group": "IIoT_Edge_Historian",
             "pages": []
           },
