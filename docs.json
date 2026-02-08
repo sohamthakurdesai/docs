@@ -28,6 +28,12 @@
         "tab": "Guides",
         "groups": [
           {
+            "group": "GCP",
+            "pages": [
+              "untitled-page"
+            ]
+          },
+          {
             "group": "LokmanyaRAG",
             "pages": [
               "untitled-page",
