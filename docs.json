@@ -29,7 +29,9 @@
         "groups": [
           {
             "group": "GCP",
-            "pages": []
+            "pages": [
+              "development-environment-setup"
+            ]
           },
           {
             "group": "LokmanyaRAG",
