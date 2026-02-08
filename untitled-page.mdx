@@ -1,0 +1,18 @@
+---
+title: "PDF Document Processing and Chunking"
+---
+
+## Data Hosting (Google Cloud Storage)
+
+Because Document AI "Batch Process" runs asynchronously, it needs to read from and write to a persistent bucket.
+
+1. **Create a Bucket:** Go to the [GCS Console](https://console.cloud.google.com/storage) and create a bucket (e.g., `tilak-corpus-input`).
+2. **Upload PDFs:** Upload your 8 PDFs.
+   - _Tip:_ For 870MB, use the `gsutil` command-line tool if you have it installed: `gsutil cp *.pdf gs://tilak-corpus-input/`.
+3. **Create an Output Folder:** Create another folder or bucket (e.g., `tilak-corpus-output`) where Document AI will save the JSON results.
+
+## Set Up the "Layout Parser" Processor
+
+1. Go to the **Document AI** console.
+2. **Create Processor:** Choose the **"Layout Parser"** (this is the one that understands headings, tables, and page flow).
+3. **Copy the ID:** Save the **Processor ID**, **Project ID**, and **Location** (e.g., `us` or `eu`). You’ll need these for your batch script.
