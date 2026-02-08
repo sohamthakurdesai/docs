@@ -1,5 +1,5 @@
 ---
-title: "PDF  Processing and Chunking"
+title: "Document Processing and Chunking"
 ---
 
 ## Data Hosting (Google Cloud Storage)
@@ -9,7 +9,7 @@ Because Document AI "Batch Process" runs asynchronously, it needs to read from a
 1. **Create a Bucket:** Go to the [GCS Console](https://console.cloud.google.com/storage) and create a bucket (e.g., `tilak-corpus-input`).
 2. **Upload PDFs:** Upload your 8 PDFs.
 
-   Use the `gsutil` command-line tool if you have it installed: 
+   Use the `gsutil` command-line tool if you have it installed:
 
 ```shellscript
 gsutil cp *.pdf gs://tilak-corpus-input/
