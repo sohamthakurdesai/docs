@@ -43,7 +43,9 @@
           },
           {
             "group": "IIoT_Edge_Historian",
-            "pages": []
+            "pages": [
+              "broker-setup"
+            ]
           },
           {
             "group": "ThinkPadT14_Setup",
