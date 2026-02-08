@@ -36,6 +36,7 @@
           {
             "group": "LokmanyaRAG",
             "pages": [
+              "tech-stack",
               "pdf-processing-chunking",
               "pdf-operations"
             ]
