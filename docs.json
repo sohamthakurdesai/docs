@@ -29,14 +29,12 @@
         "groups": [
           {
             "group": "GCP",
-            "pages": [
-              "untitled-page"
-            ]
+            "pages": []
           },
           {
             "group": "LokmanyaRAG",
             "pages": [
-              "untitled-page",
+              "pdf-processing-chunking",
               "pdf-operations"
             ]
           },
