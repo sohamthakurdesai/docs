@@ -8,7 +8,13 @@ Because Document AI "Batch Process" runs asynchronously, it needs to read from a
 
 1. **Create a Bucket:** Go to the [GCS Console](https://console.cloud.google.com/storage) and create a bucket (e.g., `tilak-corpus-input`).
 2. **Upload PDFs:** Upload your 8 PDFs.
-   - _Tip:_ For 870MB, use the `gsutil` command-line tool if you have it installed: `gsutil cp *.pdf gs://tilak-corpus-input/`.
+
+   Use the `gsutil` command-line tool if you have it installed: 
+
+```shellscript
+gsutil cp *.pdf gs://tilak-corpus-input/
+```
+
 3. **Create an Output Folder:** Create another folder or bucket (e.g., `tilak-corpus-output`) where Document AI will save the JSON results.
 
 ## Set Up the "Layout Parser" Processor
