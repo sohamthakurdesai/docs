@@ -1,0 +1,46 @@
+---
+title: "Setting Up The Old Mobile as IIoT sensor node"
+---
+
+## Model
+
+Moto 5g S Plus
+
+crDroid is installed and termux is installed on it. Follow following commands to enable ssh and sensors hardware access on the phone
+
+## SSH Setup
+
+Run these commands in **Termux** on your phone first to get it ready for your laptop.
+
+1. **Update & Install OpenSSH:** `pkg update && pkg upgrade && pkg install openssh`
+2. **Set a Password:** `passwd` (Choose something you'll remember).
+3. **Find your User and IP:**
+   - User: `whoami` (got `u0_a299`)
+   - IP: `ifconfig` (look for `inet` under `wlan0`,got `192.168.1.52`)
+4. **Start the Server:** `sshd`
+
+**From your Laptop (Linux/Mac/PowerShell):**
+
+Bash
+
+```
+ssh u0_a299@192.168.1.52 -p 8022
+```
+
+## Accessing Hardware Sensors
+
+To "talk" to the Moto G5S Plus sensors, you must install the **Termux:API** app from F-Droid (or wherever you got Termux) and then install the package inside Termux:
+
+1. **Install the API package:** `pkg install termux-api`
+2. **List available sensors:** `termux-sensor -l`
+
+**Read a specific sensor (e.g., Accelerometer):**
+
+Bash
+
+```
+termux-sensor -s "Accelerometer" -n 1
+```
+
+- `-s`: Specifies the sensor name.
+- `-n 1`: Reads the data exactly once (perfect for polling).
