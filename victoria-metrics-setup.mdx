@@ -1,0 +1,15 @@
+---
+title: "VictoriaMetrics Setup"
+---
+
+## Run the following command
+
+```shellscript
+docker run -d \
+  --name victoriametrics \
+  -p 8428:8428 \
+  -v /opt/vm-data:/victoria-metrics-data \
+  victoriametrics/victoria-metrics:latest \
+  -storageDataPath=/victoria-metrics-data \
+  -retentionPeriod=30d
+```
