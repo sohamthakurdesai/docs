@@ -44,6 +44,7 @@
           {
             "group": "IIoT_Edge_Historian",
             "pages": [
+              "system-architecture",
               "victoria-metrics-setup",
               "setting-up-the-old-mobile-as-i-iot-sensor-node",
               "broker-setup"
