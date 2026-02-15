@@ -41,3 +41,21 @@ services:
     depends_on:
       - opensearch
 ```
+
+```yaml
+# opensearch_dashboards.yml
+server.host: "0.0.0.0"
+opensearch.hosts: ["https://opensearch:9200"]
+opensearch.ssl.verificationMode: none
+opensearch.username: "admin"
+opensearch.password: "WelcomeStrong123!"
+
+# Enable multiple data source feature
+# data_source.enabled: true
+
+# # Enable workspace feature
+# workspace.enabled: true
+
+# # Enable explore feature
+# explore.enabled: true
+```
