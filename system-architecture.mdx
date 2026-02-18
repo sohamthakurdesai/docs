@@ -32,3 +32,64 @@ ReactJS + ECharts
 ## Backend and APIs
 
 Rust
+
+## Folder Structure
+
+```
+iiot-historian/
+│
+├── services/
+│   ├── ingestion/
+│   ├── api/
+│   └── shared/
+│
+├── console/
+│   └── web/
+│
+├── deployment/
+│   ├── linux/
+│   │   ├── runtime/
+│   │   │   ├── systemd/
+│   │   │   ├── users/
+│   │   │   ├── directories/
+│   │   │   └── hardening.md
+│   │   │
+│   │   └── packaging/
+│   │       ├── deb/
+│   │       │   ├── control
+│   │       │   ├── postinst
+│   │       │   └── prerm
+│   │       │
+│   │       └── rpm/
+│   │           ├── iiot-historian.spec
+│   │           └── scripts/
+│   │
+│   ├── freebsd/
+│   │   ├── runtime/
+│   │   │   ├── rc.d/
+│   │   │   ├── jail/
+│   │   │   └── hardening.md
+│   │   │
+│   │   └── packaging/
+│   │       ├── Makefile
+│   │       ├── pkg-plist
+│   │       └── scripts/
+│   │
+│   └── container/
+│       ├── docker/
+│       │   ├── Dockerfile.api
+│       │   ├── Dockerfile.ingestion
+│       │   └── docker-compose.yml
+│       │
+│       └── k8s/
+│           ├── api-deployment.yaml
+│           ├── ingestion-deployment.yaml
+│           ├── services.yaml
+│           └── configmap.yaml
+│
+├── distribution/   (optional future if publishing repos)
+│   ├── signing/
+│   └── release-scripts/
+│
+└── docs/
+```
