@@ -97,6 +97,12 @@
               "ai-tools/claude-code",
               "ai-tools/windsurf"
             ]
+          },
+          {
+            "group": "Corpus Engineering",
+            "pages": [
+              "samagra-tilak"
+            ]
           }
         ]
       },
