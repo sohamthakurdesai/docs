@@ -12,3 +12,9 @@ title: "Samagra Tilak Volumes"
 | 6 | जीवन-ध्येय                                                                | 1276        | Y       |        |
 | 7 | TOWARDS INDEPENDENCE                                                      | 1162        | Y       |        |
 | 8 | इंग्रजी आणि मराठी अग्रलेख व पत्रे                                         | 1450        | Y       |        |
+
+## Data cleaning stages for naive RAG
+
+1. Get the chunks from the chunkDocument of the layout parser output json.
+2. Clean the bleed through text that is wrongly being represented as Bengali or Gurumukhi text.
+3. Remove markdown headings
