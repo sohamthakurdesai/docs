@@ -41,7 +41,8 @@
               "pdf-processing-chunking",
               "pdf-operations",
               "observability",
-              "architectural-decisions"
+              "architectural-decisions",
+              "retrieval-analysis"
             ]
           },
           {
