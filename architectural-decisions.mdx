@@ -49,4 +49,21 @@ Samagra Tilak corpus consists of the scanned PDF of the physical Samagra Tilak v
 3. The meaning must not be lost.
 4. Ideas across the languages should get mapped effectively.
 
-## Design decision
+## Design decision: Google's **gemini-embedding-001**
+
+1. This is a great embedding model because of its big dimension size of 3072 &
+2. A very good multilngual support
+3. Due to this sematically similar chunks in different languages will be mapped nearer in the dense vector space of 3072 dimensions.
+4. This is huge, this single decision ensures better retrieval.
+
+## **<u>Problem 5</u>**
+
+## Multi-volume corpus
+
+## Design decision: Seperate vector collection for each volume (book).
+
+## **<u>Problem 6</u>**
+
+## Drop in retrieval quality when multiple volumes are involved
+
+## Design decision: Reranker, increase in max token of the LLM - Gemini 2.5 Pro
