@@ -1,0 +1,52 @@
+---
+title: "Architectural Decisions"
+---
+
+## **<u>Problem 1</u>**
+
+## The old scanned books
+
+Samagra Tilak corpus consists of the scanned PDF of the physical Samagra Tilak volumes. It contains the text in multiple languges like Marathi and English (mainly) and other languages like Sanskrit, Hindi etc. Thus the sophisticated OCR tool was required.
+
+## Design decision: GCP Document AI
+
+1. I used the Layout parser of the GCP DocumentAI.
+2. Layout parser preserves the sematic structure of the book by capturing headings, tables, paragraphs etc.
+3. It also generated chunkedDocument object which is RAG friendly.
+4. It generates good quality output for multi-lingual scanned documents.
+
+## **<u>Problem 2</u>**
+
+## Data cleaning
+
+1. Though the OCR output quality of the layout parser was quite good for the my corpus. It still introduced some noise and thus postprocessing for data cleaning was required.
+2. The outputted data contained ghost text in non-existent languages and scripts like Bengali and Gurumukhi due to the old page bleed-through.
+3. For naive RAG simple text chunks were required but outputted chunks had white spaces, repeated heading lines and page no.s etc. They need to be cleaned.
+
+## Design decision: Programatic postprocessing
+
+1. Mainly cleaning is done through usage of regular expressions
+
+## **<u>Problem 3</u>**
+
+## Quick ingestion for rapid MVP
+
+1. Though layout parser provides a structurally rich OCR output it adds the complexity of parsing that structure and creating sematically rich nested text blocks.
+2. The AI generated code is ready for it. But still its execution passes the complexity downstream by adding the overhead of complex evaluation.
+
+## Design decision: Scope limiting
+
+1. I decided to limit the scope to basic chunking with minimal metadata
+2. That way the final output won't give the research-grade citation and hence the provenance will be rudimentary.
+3. But I am still preserving the page no.s, volume name etc. that way groudning and original resource display on the UI is still possible.
+
+## **<u>Problem 4</u>**
+
+## Embedding of the linguistically and conceptually rich dated multi-lingual text
+
+1. Lokmanya Tilak's writings are rich in multiple ideas. His writings were epoch shaping and they are still inspiring.
+2. Now, the embeddings should do justice to such complex texts.
+3. The meaning must not be lost.
+4. Ideas across the languages should get mapped effectively.
+
+## Design decision

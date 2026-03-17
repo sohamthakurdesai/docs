@@ -40,7 +40,8 @@
               "tech-stack",
               "pdf-processing-chunking",
               "pdf-operations",
-              "observability"
+              "observability",
+              "architectural-decisions"
             ]
           },
           {
