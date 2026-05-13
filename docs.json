@@ -107,6 +107,12 @@
               "samagra-tilak",
               "knowledge-g"
             ]
+          },
+          {
+            "group": "AI Enabled Development Setup",
+            "pages": [
+              "claude-superpowers"
+            ]
           }
         ]
       },
