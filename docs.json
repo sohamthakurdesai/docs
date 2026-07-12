@@ -42,7 +42,13 @@
               "pdf-operations",
               "observability",
               "architectural-decisions",
-              "retrieval-analysis"
+              "retrieval-analysis",
+              {
+                "group": "KnowledgeCuration",
+                "pages": [
+                  "metadata-schemas"
+                ]
+              }
             ]
           },
           {
