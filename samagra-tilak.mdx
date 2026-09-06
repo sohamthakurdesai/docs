@@ -6,7 +6,7 @@ title: "Samagra Tilak Volumes"
 | --- | ------------------------------------------------------------------------- | ----------- | ------- | ------ |
 | 1 | श्रीमद्भगवद्गीतारहस्य                                                     | 1042        | Y       |        |
 | 2 | THE ORION, THE ARCTIC HOME IN THE VEDAS & VEDIC CHRONOLOGY & OTHER ESSAYS | 776         | Y       |        |
-| 3 | राजकीय लेखसंग्रह                                                          |             | N       |        |
+| 3 | राजकीय लेखसंग्रह |  | Y |  |
 | 4 | नवे नेतृत्व                                                               | 1080        | Y       |        |
 | 5 | समाज व संस्कृति                                                           | 1010        | Y       |        |
 | 6 | जीवन-ध्येय                                                                | 1276        | Y       |        |
@@ -18,3 +18,42 @@ title: "Samagra Tilak Volumes"
 1. Get the chunks from the chunkDocument of the layout parser output json.
 2. Clean the bleed through text that is wrongly being represented as Bengali or Gurumukhi text.
 3. Remove markdown headings
+
+# Metadata Schema
+
+```yaml
+	chunk_id: string
+	unit_id: string              # FK to the unit schema — which chapter/article this chunk belongs to
+	
+	pdf_file: string
+	pdf_page: int
+	printed_page: string
+	printed_page_status: enum
+	
+	printed_title: string|null   # title AS IT APPEARS on this page/chunk, verbatim —
+	                               # distinct from unit.title, which is your canonical/normalized title.
+	                               # Useful when the printed heading differs slightly from how
+	                               # you've normalized it, or a running header repeats a title
+	
+	identified_date: string|null      # date as extracted/inferred FOR THIS CHUNK specifically
+	identified_date_confidence: enum   # extracted (printed on page), inferred, unknown
+	                                     # this can differ from unit.date_value — e.g. a compiled
+	                                     # volume's chapter has one nominal date, but an individual
+	                                     # letter chunk within it carries its own date
+	
+	chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_page order —
+	                                 # protects you if a unit's content isn't contiguous in the PDF
+	                                 # (rare, but plates/appendix insertions can break contiguity)
+```
+
+# Volume 1 - Metadata
+
+| Title | PDF Page<br />(Range) | Actual Page/<br />Page Range | PDF File Name | Author |
+| --- | --- | --- | --- | --- |
+| प्रकाशकाचे मनोगत | 14 | Not mentioned | Volume-1-Marathi-part-1.pdf | Publisher |
+| मुखपृष्ठ | 16 | Not mentioned | Volume-1-Marathi-part-1.pdf | Tilak |
+| अर्पण पत्रिका | 18 | Not mentioned | Volume-1-Marathi-part-1.pdf | Tilak |
+| प्रस्तावना | 20 | 9-18 | Volume-1-Marathi-part-1.pdf | Tilak |
+| गीतारहस्यातील संक्षिप्त चिन्हांचा खुलासा<br />व संक्षिप्त चिन्हांनी दाखविलेल्या ग्रंथांबद्दल माहिती | 32-34 | 28-30 | Volume-1-Marathi-part-1.pdf |  |
+
+# Volume 2- Metadata
