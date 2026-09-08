@@ -22,28 +22,28 @@ title: "Samagra Tilak Volumes"
 # Metadata Schema
 
 ```yaml
-	chunk_id: string
-	unit_id: string              # FK to the unit schema — which chapter/article this chunk belongs to
-	
-	pdf_file: string
-	pdf_page: int
-	printed_page: string
-	printed_page_status: enum
-	
-	printed_title: string|null   # title AS IT APPEARS on this page/chunk, verbatim —
-	                               # distinct from unit.title, which is your canonical/normalized title.
-	                               # Useful when the printed heading differs slightly from how
-	                               # you've normalized it, or a running header repeats a title
-	
-	identified_date: string|null      # date as extracted/inferred FOR THIS CHUNK specifically
-	identified_date_confidence: enum   # extracted (printed on page), inferred, unknown
-	                                     # this can differ from unit.date_value — e.g. a compiled
-	                                     # volume's chapter has one nominal date, but an individual
-	                                     # letter chunk within it carries its own date
-	
-	chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_page order —
-	                                 # protects you if a unit's content isn't contiguous in the PDF
-	                                 # (rare, but plates/appendix insertions can break contiguity)
+chunk_id: string
+unit_id: string              # FK to the unit schema — which chapter/article this chunk belongs to
+
+pdf_file: string
+pdf_page: int
+printed_page: string
+printed_page_status: enum
+
+printed_title: string|null   # title AS IT APPEARS on this page/chunk, verbatim —
+                               # distinct from unit.title, which is your canonical/normalized title.
+                               # Useful when the printed heading differs slightly from how
+                               # you've normalized it, or a running header repeats a title
+
+identified_date: string|null      # date as extracted/inferred FOR THIS CHUNK specifically
+identified_date_confidence: enum   # extracted (printed on page), inferred, unknown
+                                     # this can differ from unit.date_value — e.g. a compiled
+                                     # volume's chapter has one nominal date, but an individual
+                                     # letter chunk within it carries its own date
+
+chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_page order —
+                                 # protects you if a unit's content isn't contiguous in the PDF
+                                 # (rare, but plates/appendix insertions can break contiguity)
 ```
 
 # Volume 1 - Metadata
