@@ -30,6 +30,11 @@ pdf_page: int
 printed_page: string
 printed_page_status: enum
 
+languages: enum
+
+volume_name: string
+book_name: string
+
 printed_title: string|null   # title AS IT APPEARS on this page/chunk, verbatim —
                                # distinct from unit.title, which is your canonical/normalized title.
                                # Useful when the printed heading differs slightly from how
@@ -48,12 +53,63 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
 
 # Volume 1 - Metadata
 
-| Title | PDF Page<br />(Range) | Actual Page/<br />Page Range | PDF File Name | Author |
-| --- | --- | --- | --- | --- |
-| प्रकाशकाचे मनोगत | 14 | Not mentioned | Volume-1-Marathi-part-1.pdf | Publisher |
-| मुखपृष्ठ | 16 | Not mentioned | Volume-1-Marathi-part-1.pdf | Tilak |
-| अर्पण पत्रिका | 18 | Not mentioned | Volume-1-Marathi-part-1.pdf | Tilak |
-| प्रस्तावना | 20 | 9-18 | Volume-1-Marathi-part-1.pdf | Tilak |
-| गीतारहस्यातील संक्षिप्त चिन्हांचा खुलासा<br />व संक्षिप्त चिन्हांनी दाखविलेल्या ग्रंथांबद्दल माहिती | 32-34 | 28-30 | Volume-1-Marathi-part-1.pdf |  |
+## गीतारहस्य
+
+### No content to be ignored
+
+413, 414
+
+| Title | Section | PDF Page<br />(Range) | Actual Page/<br />Page Range | PDF File Name | Author |
+| --- | --- | --- | --- | --- | --- |
+| प्रकाशकाचे मनोगत |  | 14 | Not mentioned | Volume-1-Marathi-part-1.pdf | Publisher |
+| मुखपृष्ठ |  | 16 | Not mentioned | Volume-1-Marathi-part-1.pdf | Lokmanya Tilak |
+| अर्पण पत्रिका |  | 18 | Not mentioned | Volume-1-Marathi-part-1.pdf | Lokmanya Tilak |
+| प्रस्तावना (गीतारहस्य) |  | 20-29 | 9-18 | Volume-1-Marathi-part-1.pdf | Lokmanya Tilak |
+| गीतारहस्यातील संक्षिप्त चिन्हांचा खुलासा<br />व संक्षिप्त चिन्हांनी दाखविलेल्या ग्रंथांबद्दल माहिती |  | 32-34 | 28-30 | Volume-1-Marathi-part-1.pdf | Editor |
+| हिंदु धर्म-ग्रंथांची सामान्य माहिती |  | 35-37 | 31-33 | Volume-1-Marathi-part-1.pdf | Editor |
+| गीतारहस्याच्या मूळ हस्तलिखित प्रतीची अधिक माहिती |  | 38-40 | 34-36 | Volume-1-Marathi-part-1.pdf | Editor |
+| विषयप्रवेश |  | 41-65 | 1-25 | Volume-1-Marathi-part-1.pdf | Lokmanya Tilak |
+| कर्मजिज्ञासा |  | 66-86 | 26-46 | Volume-1-Marathi-part-1.pdf | Lokmanya Tilak |
+| कर्मयोगशास्त्र |  | 87-107 | 47-67 | Volume-1-Marathi-part-1.pdf | Lokmanya Tilak |
+| अधिभौतिक सुखवाद |  | 108-125 | 68-85 | Volume-1-Marathi-part-1.pdf | Lokmanya Tilak |
+| सुखदुःख विवेक |  | 126-150 | 86-110 | Volume-1-Marathi-part-1.pdf | Lokmanya Tilak |
+| अधिदैवतपक्ष व क्षेत्रक्षेत्रज्ञविचार |  | 151-173 | 111-133 | Volume-1-Marathi-part-1.pdf | Lokmanya Tilak |
+| कापिलसांख्यशास्त्र किंवा क्षारक्षरविचार |  | 174-190 | 134-150 | Volume-1-Marathi-part-1.pdf | Lokmanya Tilak |
+| विश्वाची उभारणी व संहारणी |  | 191-215 | 151-175 | Volume-1-Marathi-part-1.pdf | Lokmanya Tilak |
+| अध्यात्म |  | 216-273 | 176-233 | Volume-1-Marathi-part-1.pdf | Lokmanya Tilak |
+| कर्मविपाक व आत्मस्वातंत्र्य |  | 274-310 | 234-270 | Volume-1-Marathi-part-1.pdf | Lokmanya Tilak |
+| संन्यास व कर्मयोग |  | 311-370 | 271-330 | Volume-1-Marathi-part-1.pdf | Lokmanya Tilak |
+| सिद्धावस्था व व्यवहार |  | 371-406 | 331-366 | Volume-1-Marathi-part-1.pdf | Lokmanya Tilak |
+| भक्तिमार्ग |  | 407-440 | 367-398 | Volume-1-Marathi-part-1.pdf | Lokmanya Tilak |
+| गीताध्यायसंगती |  | 441-465 | 399-423 | Volume-1-Marathi-part-1.pdf | Lokmanya Tilak |
+| उपसंहार |  | 466-498 | 424-456 | Volume-1-Marathi-part-1.pdf | Lokmanya Tilak |
+| गीतेचे बहिरंगपरीक्षण |  | 499-521 | 457-479 | Volume-1-Marathi-part-1.pdf | Lokmanya Tilak |
+| गीतेचे बहिरंगपरीक्षण |  | 1-53 | 480-532 | Volume-1-Marathi-part-2.pdf | Lokmanya Tilak |
+|  | गीतेचे मूळ श्लोक, मराठी भाषांतर आणि टीपा | 54 |  | Volume-1-Marathi-part-2.pdf |  |
+| उपोद्घात |  | 56-57 | 535-536 | Volume-1-Marathi-part-2.pdf |  |
+| गीतेच्या अध्यायांतील विषयांनी श्लोकवार अनुक्रमणिका |  | 58-64 | 537-543 | Volume-1-Marathi-part-2.pdf |  |
+| अध्याय पहिला |  |  |  | Volume-1-Marathi-part-2.pdf |  |
+| अध्याय दुसरा |  |  |  | Volume-1-Marathi-part-2.pdf |  |
+| अध्याय तिसरा |  |  |  |  |  |
+| अध्याय चौथा |  |  |  |  |  |
+| अध्याय पाचवा |  |  |  |  |  |
+| अध्याय सहावा |  |  |  |  |  |
+| अध्याय सातवा |  |  |  |  |  |
+| अध्याय आठवा |  |  |  |  |  |
+| अध्याय नववा |  |  |  |  |  |
+| अध्याय दहावा |  |  |  |  |  |
+| अध्याय अकरावा |  |  |  |  |  |
+| अध्याय बारावा |  |  |  |  |  |
+| अध्याय तेरावा |  |  |  |  |  |
+| अध्याय चौदावा |  |  |  |  |  |
+| अध्याय पंधरावा |  |  |  |  |  |
+| अध्याय सोळावा |  |  |  |  |  |
+| अध्याय सतरावा |  |  |  |  |  |
+| अध्याय अठरावा |  |  |  |  |  |
+| गीतेच्या श्लोकांची सूची |  |  |  |  |  |
+| उल्लेखसूची |  |  |  |  |  |
+| लोकमान्य टिळकांची जन्मकुंडली, व राशीकुंडली तथा जन्मकालीन स्पष्टग्रह |  |  |  |  |  |
+
+## लोकमान्यांची ब्रह्मसूत्रांवरील टिपणे
 
 # Volume 2- Metadata
