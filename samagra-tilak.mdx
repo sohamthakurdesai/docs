@@ -27,788 +27,28 @@ title: "Samagra Tilak Volumes"
 
 ```yaml
 chunk_id: string
-# unit_id: string              # FK to the unit schema — which chapter/article this chunk belongs to
-unit_type: string|null
-# editorial, speech, letter, article, chapter
-
 pdf_file: string
-pdf_page: int
-printed_page: string
-printed_page_status: enum
-
+pdf_page_number: int
+printed_title: string|null
+unit_type: string|null # editorial, speech, letter, article, chapter
+printed_page_number: string
 languages: enum
 author: string
-
 retrieval_relevant: boolean
-exclusion_reason: enum|null    # only populated when false
-
 editorial_theme: string
 editorial_theme_en: string
-
 theme_curator: string
 theme_curator_source: enum
-
 volume_name: string
 original_source_name: string # Kesari, Maratha
 original_source_type: string # Newspaper, Book, Letter
 section_name: string
-printed_title: string|null   # title AS IT APPEARS on this page/chunk, verbatim —
-                               # distinct from unit.title, which is your canonical/normalized title.
-                               # Useful when the printed heading differs slightly from how
-                               # you've normalized it, or a running header repeats a title
-
-identified_date: string|null      # date as extracted/inferred FOR THIS CHUNK specifically
-identified_date_confidence: enum   # extracted (printed on page), inferred, unknown
-                                     # this can differ from unit.date_value — e.g. a compiled
-                                     # volume's chapter has one nominal date, but an individual
-                                     # letter chunk within it carries its own date
-
-chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_page order —
-                                 # protects you if a unit's content isn't contiguous in the PDF
-                                 # (rare, but plates/appendix insertions can break contiguity)
+identified_date: string|null # date as extracted/inferred FOR THIS CHUNK specifically
 ```
 
 # Volume 1 - Metadata
 
 ## गीतारहस्य
-
-<table>
-  <colgroup>
-    <col width="100" />
-    <col width="247" />
-    <col width="100" />
-    <col width="100" />
-    <col width="133" />
-    <col width="235" />
-    <col width="139" />
-  </colgroup>
-  <thead>
-    <tr>
-      <th>PDF Page<br />(Range)</th>
-      <th>Printed Title</th>
-      <th>Type</th>
-      <th>retrieval_relevant</th>
-      <th>Actual Page/<br />Page Range</th>
-      <th>PDF File Name</th>
-      <th>Author</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1-2</td>
-      <td>-</td>
-      <td>Blank Pages</td>
-      <td>false</td>
-      <td>-</td>
-      <td>Volume-1-Marathi-part-1.pdf</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>-</td>
-      <td>Front page</td>
-      <td>false</td>
-      <td>-</td>
-      <td>Volume-1-Marathi-part-1.pdf</td>
-      <td>Publisher</td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td>-</td>
-      <td>Publishing information</td>
-      <td>false</td>
-      <td>-</td>
-      <td>Volume-1-Marathi-part-1.pdf</td>
-      <td>Publisher</td>
-    </tr>
-    <tr>
-      <td>5</td>
-      <td>गीतारहस्याची सामान्य अनुक्रमणिका</td>
-      <td>TOC</td>
-      <td>false</td>
-      <td>-</td>
-      <td>Volume-1-Marathi-part-1.pdf</td>
-      <td>Composer</td>
-    </tr>
-    <tr>
-      <td>5-13</td>
-      <td>गीतारहस्यांतील विषयांची प्रकरणशः अनुक्रमणिका</td>
-      <td>Detailed TOC</td>
-      <td>false</td>
-      <td>-</td>
-      <td>Volume-1-Marathi-part-1.pdf</td>
-      <td>Composer</td>
-    </tr>
-    <tr>
-      <td>14</td>
-      <td>प्रकाशकाचे निवेदन</td>
-      <td></td>
-      <td>true</td>
-      <td>-</td>
-      <td>Volume-1-Marathi-part-1.pdf</td>
-      <td>Publisher</td>
-    </tr>
-    <tr>
-      <td>15</td>
-      <td>-</td>
-      <td>Blank Pages</td>
-      <td>false</td>
-      <td>-</td>
-      <td>Volume-1-Marathi-part-1.pdf</td>
-      <td>Composer</td>
-    </tr>
-    <tr>
-      <td>16</td>
-      <td>मुखपृष्ठ</td>
-      <td></td>
-      <td>false</td>
-      <td>-</td>
-      <td>Volume-1-Marathi-part-1.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td>17</td>
-      <td>-</td>
-      <td>Blank Pages</td>
-      <td>false</td>
-      <td>-</td>
-      <td>Volume-1-Marathi-part-1.pdf</td>
-      <td>Composer</td>
-    </tr>
-    <tr>
-      <td>18</td>
-      <td>अर्पण पत्रिका</td>
-      <td></td>
-      <td>true</td>
-      <td>Not mentioned</td>
-      <td>Volume-1-Marathi-part-1.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td>19</td>
-      <td>-</td>
-      <td>Blank Pages</td>
-      <td>false</td>
-      <td>-</td>
-      <td>Volume-1-Marathi-part-1.pdf</td>
-      <td>Publisher</td>
-    </tr>
-    <tr>
-      <td>20-29</td>
-      <td>प्रस्तावना (गीतारहस्य)</td>
-      <td>Preface</td>
-      <td>true</td>
-      <td>9-18</td>
-      <td>Volume-1-Marathi-part-1.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td>30</td>
-      <td>-</td>
-      <td>Tilak Photo</td>
-      <td>false</td>
-      <td>-</td>
-      <td>Volume-1-Marathi-part-1.pdf</td>
-      <td>Publisher</td>
-    </tr>
-    <tr>
-      <td>31</td>
-      <td>-</td>
-      <td>Blank Pages</td>
-      <td>false</td>
-      <td>-</td>
-      <td>Volume-1-Marathi-part-1.pdf</td>
-      <td>Composer</td>
-    </tr>
-    <tr>
-      <td>32-34</td>
-      <td>गीतारहस्यातील संक्षिप्त चिन्हांचा खुलासा<br />व संक्षिप्त चिन्हांनी दाखविलेल्या ग्रंथांबद्दल माहिती</td>
-      <td></td>
-      <td>false</td>
-      <td>28-30</td>
-      <td>Volume-1-Marathi-part-1.pdf</td>
-      <td>Editor</td>
-    </tr>
-    <tr>
-      <td>35-37</td>
-      <td>हिंदु धर्म-ग्रंथांची सामान्य माहिती</td>
-      <td></td>
-      <td>true</td>
-      <td>31-33</td>
-      <td>Volume-1-Marathi-part-1.pdf</td>
-      <td>Editor</td>
-    </tr>
-    <tr>
-      <td>38-40</td>
-      <td>गीतारहस्याच्या मूळ हस्तलिखित प्रतीची अधिक माहिती</td>
-      <td></td>
-      <td>true</td>
-      <td>34-36</td>
-      <td>Volume-1-Marathi-part-1.pdf</td>
-      <td>Editor</td>
-    </tr>
-    <tr>
-      <td>41-65</td>
-      <td>विषयप्रवेश</td>
-      <td>Chapter</td>
-      <td>true</td>
-      <td>1-25</td>
-      <td>Volume-1-Marathi-part-1.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td>66-86</td>
-      <td>कर्मजिज्ञासा</td>
-      <td>Chapter</td>
-      <td>true</td>
-      <td>26-46</td>
-      <td>Volume-1-Marathi-part-1.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td>87-107</td>
-      <td>कर्मयोगशास्त्र</td>
-      <td>Chapter</td>
-      <td>true</td>
-      <td>47-67</td>
-      <td>Volume-1-Marathi-part-1.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td>108-125</td>
-      <td>अधिभौतिक सुखवाद</td>
-      <td>Chapter</td>
-      <td>true</td>
-      <td>68-85</td>
-      <td>Volume-1-Marathi-part-1.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td>126-150</td>
-      <td>सुखदुःख विवेक</td>
-      <td>Chapter</td>
-      <td>true</td>
-      <td>86-110</td>
-      <td>Volume-1-Marathi-part-1.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td>151-173</td>
-      <td>अधिदैवतपक्ष व क्षेत्रक्षेत्रज्ञविचार</td>
-      <td>Chapter</td>
-      <td>true</td>
-      <td>111-133</td>
-      <td>Volume-1-Marathi-part-1.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td>174-190</td>
-      <td>कापिलसांख्यशास्त्र किंवा क्षारक्षरविचार</td>
-      <td>Chapter</td>
-      <td>true</td>
-      <td>134-150</td>
-      <td>Volume-1-Marathi-part-1.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td>191-215</td>
-      <td>विश्वाची उभारणी व संहारणी</td>
-      <td>Chapter</td>
-      <td>true</td>
-      <td>151-175</td>
-      <td>Volume-1-Marathi-part-1.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td>216-273</td>
-      <td>अध्यात्म</td>
-      <td>Chapter</td>
-      <td>true</td>
-      <td>176-233</td>
-      <td>Volume-1-Marathi-part-1.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td>274-310</td>
-      <td>कर्मविपाक व आत्मस्वातंत्र्य</td>
-      <td>Chapter</td>
-      <td>true</td>
-      <td>234-270</td>
-      <td>Volume-1-Marathi-part-1.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td>311-370</td>
-      <td>संन्यास व कर्मयोग</td>
-      <td>Chapter</td>
-      <td>true</td>
-      <td>271-330</td>
-      <td>Volume-1-Marathi-part-1.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td>371-406</td>
-      <td>सिद्धावस्था व व्यवहार</td>
-      <td>Chapter</td>
-      <td>true</td>
-      <td>331-366</td>
-      <td>Volume-1-Marathi-part-1.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td>407-440</td>
-      <td>भक्तिमार्ग</td>
-      <td>Chapter</td>
-      <td>true</td>
-      <td>367-398</td>
-      <td>Volume-1-Marathi-part-1.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td>413-414</td>
-      <td>-</td>
-      <td>Photo</td>
-      <td>false</td>
-      <td>-</td>
-      <td>Volume-1-Marathi-part-1.pdf</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>441-465</td>
-      <td>गीताध्यायसंगती</td>
-      <td>Chapter</td>
-      <td>true</td>
-      <td>399-423</td>
-      <td>Volume-1-Marathi-part-1.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td>466-498</td>
-      <td>उपसंहार</td>
-      <td>Chapter</td>
-      <td>true</td>
-      <td>424-456</td>
-      <td>Volume-1-Marathi-part-1.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td>499-521</td>
-      <td>गीतेचे बहिरंगपरीक्षण</td>
-      <td>Chapter</td>
-      <td>true</td>
-      <td>457-479</td>
-      <td>Volume-1-Marathi-part-1.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td>1-53</td>
-      <td>गीतेचे बहिरंगपरीक्षण</td>
-      <td>Chapter</td>
-      <td>true</td>
-      <td>480-532</td>
-      <td>Volume-1-Marathi-part-2.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td>54</td>
-      <td>गीतेचे मूळ श्लोक, मराठी भाषांतर आणि टीपा</td>
-      <td>Title Page</td>
-      <td>false</td>
-      <td>-</td>
-      <td>Volume-1-Marathi-part-2.pdf</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>56-57</td>
-      <td>उपोद्घात</td>
-      <td>Original verses of the Gita, Marathi translation and notes</td>
-      <td>true</td>
-      <td>535-536</td>
-      <td>Volume-1-Marathi-part-2.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td>58-64</td>
-      <td>गीतेच्या अध्यायांतील विषयांनी श्लोकवार अनुक्रमणिका</td>
-      <td>Original verses of the Gita, Marathi translation and notes</td>
-      <td>false</td>
-      <td>537-543</td>
-      <td>Volume-1-Marathi-part-2.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td>65-66</td>
-      <td>-</td>
-      <td>Blank Pages</td>
-      <td>false</td>
-      <td>-</td>
-      <td>Volume-1-Marathi-part-2.pdf</td>
-      <td>Composer</td>
-    </tr>
-    <tr>
-      <td>67</td>
-      <td>-</td>
-      <td>Photo</td>
-      <td>false</td>
-      <td>-</td>
-      <td>Volume-1-Marathi-part-2.pdf</td>
-      <td>Composer</td>
-    </tr>
-    <tr>
-      <td>68-78</td>
-      <td>अध्याय पहिला</td>
-      <td>Original verses of the Gita, Marathi translation and notes</td>
-      <td>true</td>
-      <td>545-555</td>
-      <td>Volume-1-Marathi-part-2.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td>79-107</td>
-      <td>अध्याय दुसरा</td>
-      <td>Original verses of the Gita, Marathi translation and notes</td>
-      <td>true</td>
-      <td>556-584</td>
-      <td>Volume-1-Marathi-part-2.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td>108-128</td>
-      <td>अध्याय तिसरा</td>
-      <td>Original verses of the Gita, Marathi translation and notes</td>
-      <td>true</td>
-      <td>585-605</td>
-      <td>Volume-1-Marathi-part-2.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td>129-147</td>
-      <td>अध्याय चौथा</td>
-      <td>Original verses of the Gita, Marathi translation and notes</td>
-      <td>true</td>
-      <td>606-624</td>
-      <td>Volume-1-Marathi-part-2.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td>148-156</td>
-      <td>अध्याय पाचवा</td>
-      <td>Original verses of the Gita, Marathi translation and notes</td>
-      <td>true</td>
-      <td>625-633</td>
-      <td>Volume-1-Marathi-part-2.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td>157-177</td>
-      <td>अध्याय सहावा</td>
-      <td>Original verses of the Gita, Marathi translation and notes</td>
-      <td>true</td>
-      <td>634-653</td>
-      <td>Volume-1-Marathi-part-2.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td>178-188</td>
-      <td>अध्याय सातवा</td>
-      <td>Original verses of the Gita, Marathi translation and notes</td>
-      <td>true</td>
-      <td>654-665</td>
-      <td>Volume-1-Marathi-part-2.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td>189-199</td>
-      <td>अध्याय आठवा</td>
-      <td>Original verses of the Gita, Marathi translation and notes</td>
-      <td>true</td>
-      <td>666-676</td>
-      <td>Volume-1-Marathi-part-2.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td>200-212</td>
-      <td>अध्याय नववा</td>
-      <td>Original verses of the Gita, Marathi translation and notes</td>
-      <td>true</td>
-      <td>677-689</td>
-      <td>Volume-1-Marathi-part-2.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td>213-224</td>
-      <td>अध्याय दहावा</td>
-      <td>Original verses of the Gita, Marathi translation and notes</td>
-      <td>true</td>
-      <td>690-701</td>
-      <td>Volume-1-Marathi-part-2.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td>225-236</td>
-      <td>अध्याय अकरावा</td>
-      <td>Original verses of the Gita, Marathi translation and notes</td>
-      <td>true</td>
-      <td>702-713</td>
-      <td>Volume-1-Marathi-part-2.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td>237-244</td>
-      <td>अध्याय बारावा</td>
-      <td>Original verses of the Gita, Marathi translation and notes</td>
-      <td>true</td>
-      <td>714-721</td>
-      <td>Volume-1-Marathi-part-2.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td>245-256</td>
-      <td>अध्याय तेरावा</td>
-      <td>Original verses of the Gita, Marathi translation and notes</td>
-      <td>true</td>
-      <td>722-733</td>
-      <td>Volume-1-Marathi-part-2.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td>257-263</td>
-      <td>अध्याय चौदावा</td>
-      <td>Original verses of the Gita, Marathi translation and notes</td>
-      <td>true</td>
-      <td>734-740</td>
-      <td>Volume-1-Marathi-part-2.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td>264-273</td>
-      <td>अध्याय पंधरावा</td>
-      <td>Original verses of the Gita, Marathi translation and notes</td>
-      <td>true</td>
-      <td>741-750</td>
-      <td>Volume-1-Marathi-part-2.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td>274-280</td>
-      <td>अध्याय सोळावा</td>
-      <td>Original verses of the Gita, Marathi translation and notes</td>
-      <td>true</td>
-      <td>751-757</td>
-      <td>Volume-1-Marathi-part-2.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td>281-289</td>
-      <td>अध्याय सतरावा</td>
-      <td>Original verses of the Gita, Marathi translation and notes</td>
-      <td>true</td>
-      <td>758-766</td>
-      <td>Volume-1-Marathi-part-2.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td>290-316</td>
-      <td>अध्याय अठरावा</td>
-      <td>Original verses of the Gita, Marathi translation and notes</td>
-      <td>true</td>
-      <td>767-793</td>
-      <td>Volume-1-Marathi-part-2.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td>317-327</td>
-      <td>गीतेच्या श्लोकांची सूची</td>
-      <td>List of verses of Gita</td>
-      <td>true</td>
-      <td>794-804</td>
-      <td>Volume-1-Marathi-part-2.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td>328-358</td>
-      <td>उल्लेखसूची</td>
-      <td>Entity List and Details</td>
-      <td>true</td>
-      <td>805-835</td>
-      <td>Volume-1-Marathi-part-2.pdf</td>
-      <td>Editor</td>
-    </tr>
-    <tr>
-      <td>359</td>
-      <td>लोकमान्य टिळकांची जन्मकुंडली, व राशीकुंडली तथा जन्मकालीन स्पष्टग्रह</td>
-      <td>Lokmanya's Horoscope</td>
-      <td>false</td>
-      <td>836</td>
-      <td>Volume-1-Marathi-part-2.pdf</td>
-      <td>Editor</td>
-    </tr>
-  </tbody>
-</table>
-
-## लोकमान्यांची ब्रह्मसूत्रांवरील टिपणे
-
-<table>
-  <colgroup>
-    <col width="100" />
-    <col width="247" />
-    <col width="100" />
-    <col width="100" />
-    <col width="133" />
-    <col width="235" />
-    <col width="139" />
-  </colgroup>
-  <thead>
-    <tr>
-      <th>PDF Page<br />(Range)</th>
-      <th>Printed Title</th>
-      <th>Type</th>
-      <th>retrieval_relevant</th>
-      <th>Actual Page/<br />Page Range</th>
-      <th>PDF File Name</th>
-      <th>Author</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>360</td>
-      <td>लोकमान्यांची ब्रह्मसूत्रांवरील टिपणे</td>
-      <td>Front page</td>
-      <td>false</td>
-      <td>-</td>
-      <td>Volume-1-Marathi-part-2.pdf</td>
-      <td>Editor</td>
-    </tr>
-    <tr>
-      <td>361</td>
-      <td>-</td>
-      <td>Blank Pages</td>
-      <td>false</td>
-      <td>-</td>
-      <td>Volume-1-Marathi-part-2.pdf</td>
-      <td>Editor</td>
-    </tr>
-    <tr>
-      <td>362</td>
-      <td>अनुक्रमणिका</td>
-      <td>TOC</td>
-      <td>false</td>
-      <td>-</td>
-      <td>Volume-1-Marathi-part-2.pdf</td>
-      <td>Editor</td>
-    </tr>
-    <tr>
-      <td>363</td>
-      <td>-</td>
-      <td>Blank Pages</td>
-      <td>false</td>
-      <td>-</td>
-      <td>Volume-1-Marathi-part-2.pdf</td>
-      <td>Editor</td>
-    </tr>
-    <tr>
-      <td>364-366</td>
-      <td>नव्याने प्रास्ताविक</td>
-      <td>Preface</td>
-      <td>true</td>
-      <td>1-3</td>
-      <td>Volume-1-Marathi-part-2.pdf</td>
-      <td>Keshav Pandurang Jog</td>
-    </tr>
-    <tr>
-      <td>367-369</td>
-      <td>प्रास्ताविकं किंचित</td>
-      <td>Preface</td>
-      <td>true</td>
-      <td>4-6</td>
-      <td>Volume-1-Marathi-part-2.pdf</td>
-      <td>Vi. Pra. Limaye</td>
-    </tr>
-    <tr>
-      <td>370</td>
-      <td>संक्षेपचिह्नानां विवरणम्</td>
-      <td></td>
-      <td>false</td>
-      <td>7</td>
-      <td>Volume-1-Marathi-part-2.pdf</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>371-373</td>
-      <td>Tilak's Preface to Brahmasutra</td>
-      <td>Preface</td>
-      <td>true</td>
-      <td>8-10</td>
-      <td>Volume-1-Marathi-part-2.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td>374</td>
-      <td>प्रथमः अध्यायः</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>Volume-1-Marathi-part-2.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>द्वितीयः अध्यायः</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>Volume-1-Marathi-part-2.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>तृतीयः अध्यायः</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>Volume-1-Marathi-part-2.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>चतुर्थः अध्यायः</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>Volume-1-Marathi-part-2.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>परिशिष्टम्</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>Volume-1-Marathi-part-2.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>ब्रह्मसूत्रपदसूची</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>Volume-1-Marathi-part-2.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>शुद्धिपत्र</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>Volume-1-Marathi-part-2.pdf</td>
-      <td>Lokmanya Tilak</td>
-    </tr>
-  </tbody>
-</table>
-
-# Volume 2 - Metadata Analysis
 
 <table>
   <colgroup>
@@ -843,9 +83,921 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>false</td>
       <td>-</td>
       <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-1.pdf</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>-</td>
+      <td>Front page</td>
+      <td>false</td>
+      <td>-</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-1.pdf</td>
+      <td>Publisher</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>-</td>
+      <td>Publishing information</td>
+      <td>false</td>
+      <td>-</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-1.pdf</td>
+      <td>Publisher</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>गीतारहस्याची सामान्य अनुक्रमणिका</td>
+      <td>TOC</td>
+      <td>false</td>
+      <td>-</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-1.pdf</td>
+      <td>Composer</td>
+    </tr>
+    <tr>
+      <td>5-13</td>
+      <td>गीतारहस्यांतील विषयांची प्रकरणशः अनुक्रमणिका</td>
+      <td>Detailed TOC</td>
+      <td>false</td>
+      <td>-</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-1.pdf</td>
+      <td>Composer</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td>प्रकाशकाचे निवेदन</td>
+      <td></td>
+      <td>true</td>
+      <td>-</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-1.pdf</td>
+      <td>Publisher</td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td>-</td>
+      <td>Blank Pages</td>
+      <td>false</td>
+      <td>-</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-1.pdf</td>
+      <td>Composer</td>
+    </tr>
+    <tr>
+      <td>16</td>
+      <td>मुखपृष्ठ</td>
+      <td></td>
+      <td>false</td>
+      <td>-</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-1.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>17</td>
+      <td>-</td>
+      <td>Blank Pages</td>
+      <td>false</td>
+      <td>-</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-1.pdf</td>
+      <td>Composer</td>
+    </tr>
+    <tr>
+      <td>18</td>
+      <td>अर्पण पत्रिका</td>
+      <td></td>
+      <td>true</td>
+      <td>Not mentioned</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-1.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>19</td>
+      <td>-</td>
+      <td>Blank Pages</td>
+      <td>false</td>
+      <td>-</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-1.pdf</td>
+      <td>Publisher</td>
+    </tr>
+    <tr>
+      <td>20-29</td>
+      <td>प्रस्तावना (गीतारहस्य)</td>
+      <td>Preface</td>
+      <td>true</td>
+      <td>9-18</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-1.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>30</td>
+      <td>-</td>
+      <td>Tilak Photo</td>
+      <td>false</td>
+      <td>-</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-1.pdf</td>
+      <td>Publisher</td>
+    </tr>
+    <tr>
+      <td>31</td>
+      <td>-</td>
+      <td>Blank Pages</td>
+      <td>false</td>
+      <td>-</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-1.pdf</td>
+      <td>Composer</td>
+    </tr>
+    <tr>
+      <td>32-34</td>
+      <td>गीतारहस्यातील संक्षिप्त चिन्हांचा खुलासा<br />व संक्षिप्त चिन्हांनी दाखविलेल्या ग्रंथांबद्दल माहिती</td>
+      <td></td>
+      <td>false</td>
+      <td>28-30</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-1.pdf</td>
+      <td>Editor</td>
+    </tr>
+    <tr>
+      <td>35-37</td>
+      <td>हिंदु धर्म-ग्रंथांची सामान्य माहिती</td>
+      <td></td>
+      <td>true</td>
+      <td>31-33</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-1.pdf</td>
+      <td>Editor</td>
+    </tr>
+    <tr>
+      <td>38-40</td>
+      <td>गीतारहस्याच्या मूळ हस्तलिखित प्रतीची अधिक माहिती</td>
+      <td></td>
+      <td>true</td>
+      <td>34-36</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-1.pdf</td>
+      <td>Editor</td>
+    </tr>
+    <tr>
+      <td>41-65</td>
+      <td>विषयप्रवेश</td>
+      <td>Chapter</td>
+      <td>true</td>
+      <td>1-25</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-1.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>66-86</td>
+      <td>कर्मजिज्ञासा</td>
+      <td>Chapter</td>
+      <td>true</td>
+      <td>26-46</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-1.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>87-107</td>
+      <td>कर्मयोगशास्त्र</td>
+      <td>Chapter</td>
+      <td>true</td>
+      <td>47-67</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-1.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>108-125</td>
+      <td>अधिभौतिक सुखवाद</td>
+      <td>Chapter</td>
+      <td>true</td>
+      <td>68-85</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-1.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>126-150</td>
+      <td>सुखदुःख विवेक</td>
+      <td>Chapter</td>
+      <td>true</td>
+      <td>86-110</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-1.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>151-173</td>
+      <td>अधिदैवतपक्ष व क्षेत्रक्षेत्रज्ञविचार</td>
+      <td>Chapter</td>
+      <td>true</td>
+      <td>111-133</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-1.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>174-190</td>
+      <td>कापिलसांख्यशास्त्र किंवा क्षारक्षरविचार</td>
+      <td>Chapter</td>
+      <td>true</td>
+      <td>134-150</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-1.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>191-215</td>
+      <td>विश्वाची उभारणी व संहारणी</td>
+      <td>Chapter</td>
+      <td>true</td>
+      <td>151-175</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-1.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>216-273</td>
+      <td>अध्यात्म</td>
+      <td>Chapter</td>
+      <td>true</td>
+      <td>176-233</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-1.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>274-310</td>
+      <td>कर्मविपाक व आत्मस्वातंत्र्य</td>
+      <td>Chapter</td>
+      <td>true</td>
+      <td>234-270</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-1.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>311-370</td>
+      <td>संन्यास व कर्मयोग</td>
+      <td>Chapter</td>
+      <td>true</td>
+      <td>271-330</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-1.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>371-406</td>
+      <td>सिद्धावस्था व व्यवहार</td>
+      <td>Chapter</td>
+      <td>true</td>
+      <td>331-366</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-1.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>407-440</td>
+      <td>भक्तिमार्ग</td>
+      <td>Chapter</td>
+      <td>true</td>
+      <td>367-398</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-1.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>413-414</td>
+      <td>-</td>
+      <td>Photo</td>
+      <td>false</td>
+      <td>-</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-1.pdf</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>441-465</td>
+      <td>गीताध्यायसंगती</td>
+      <td>Chapter</td>
+      <td>true</td>
+      <td>399-423</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-1.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>466-498</td>
+      <td>उपसंहार</td>
+      <td>Chapter</td>
+      <td>true</td>
+      <td>424-456</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-1.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>499-521</td>
+      <td>गीतेचे बहिरंगपरीक्षण</td>
+      <td>Chapter</td>
+      <td>true</td>
+      <td>457-479</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-1.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>1-53</td>
+      <td>गीतेचे बहिरंगपरीक्षण</td>
+      <td>Chapter</td>
+      <td>true</td>
+      <td>480-532</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>54</td>
+      <td>गीतेचे मूळ श्लोक, मराठी भाषांतर आणि टीपा</td>
+      <td>Title Page</td>
+      <td>false</td>
+      <td>-</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>56-57</td>
+      <td>उपोद्घात</td>
+      <td>Original verses of the Gita, Marathi translation and notes</td>
+      <td>true</td>
+      <td>535-536</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>58-64</td>
+      <td>गीतेच्या अध्यायांतील विषयांनी श्लोकवार अनुक्रमणिका</td>
+      <td>Original verses of the Gita, Marathi translation and notes</td>
+      <td>false</td>
+      <td>537-543</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>65-66</td>
+      <td>-</td>
+      <td>Blank Pages</td>
+      <td>false</td>
+      <td>-</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td>Composer</td>
+    </tr>
+    <tr>
+      <td>67</td>
+      <td>-</td>
+      <td>Photo</td>
+      <td>false</td>
+      <td>-</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td>Composer</td>
+    </tr>
+    <tr>
+      <td>68-78</td>
+      <td>अध्याय पहिला</td>
+      <td>Original verses of the Gita, Marathi translation and notes</td>
+      <td>true</td>
+      <td>545-555</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>79-107</td>
+      <td>अध्याय दुसरा</td>
+      <td>Original verses of the Gita, Marathi translation and notes</td>
+      <td>true</td>
+      <td>556-584</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>108-128</td>
+      <td>अध्याय तिसरा</td>
+      <td>Original verses of the Gita, Marathi translation and notes</td>
+      <td>true</td>
+      <td>585-605</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>129-147</td>
+      <td>अध्याय चौथा</td>
+      <td>Original verses of the Gita, Marathi translation and notes</td>
+      <td>true</td>
+      <td>606-624</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>148-156</td>
+      <td>अध्याय पाचवा</td>
+      <td>Original verses of the Gita, Marathi translation and notes</td>
+      <td>true</td>
+      <td>625-633</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>157-177</td>
+      <td>अध्याय सहावा</td>
+      <td>Original verses of the Gita, Marathi translation and notes</td>
+      <td>true</td>
+      <td>634-653</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>178-188</td>
+      <td>अध्याय सातवा</td>
+      <td>Original verses of the Gita, Marathi translation and notes</td>
+      <td>true</td>
+      <td>654-665</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>189-199</td>
+      <td>अध्याय आठवा</td>
+      <td>Original verses of the Gita, Marathi translation and notes</td>
+      <td>true</td>
+      <td>666-676</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>200-212</td>
+      <td>अध्याय नववा</td>
+      <td>Original verses of the Gita, Marathi translation and notes</td>
+      <td>true</td>
+      <td>677-689</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>213-224</td>
+      <td>अध्याय दहावा</td>
+      <td>Original verses of the Gita, Marathi translation and notes</td>
+      <td>true</td>
+      <td>690-701</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>225-236</td>
+      <td>अध्याय अकरावा</td>
+      <td>Original verses of the Gita, Marathi translation and notes</td>
+      <td>true</td>
+      <td>702-713</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>237-244</td>
+      <td>अध्याय बारावा</td>
+      <td>Original verses of the Gita, Marathi translation and notes</td>
+      <td>true</td>
+      <td>714-721</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>245-256</td>
+      <td>अध्याय तेरावा</td>
+      <td>Original verses of the Gita, Marathi translation and notes</td>
+      <td>true</td>
+      <td>722-733</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>257-263</td>
+      <td>अध्याय चौदावा</td>
+      <td>Original verses of the Gita, Marathi translation and notes</td>
+      <td>true</td>
+      <td>734-740</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>264-273</td>
+      <td>अध्याय पंधरावा</td>
+      <td>Original verses of the Gita, Marathi translation and notes</td>
+      <td>true</td>
+      <td>741-750</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>274-280</td>
+      <td>अध्याय सोळावा</td>
+      <td>Original verses of the Gita, Marathi translation and notes</td>
+      <td>true</td>
+      <td>751-757</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>281-289</td>
+      <td>अध्याय सतरावा</td>
+      <td>Original verses of the Gita, Marathi translation and notes</td>
+      <td>true</td>
+      <td>758-766</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>290-316</td>
+      <td>अध्याय अठरावा</td>
+      <td>Original verses of the Gita, Marathi translation and notes</td>
+      <td>true</td>
+      <td>767-793</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>317-327</td>
+      <td>गीतेच्या श्लोकांची सूची</td>
+      <td>List of verses of Gita</td>
+      <td>true</td>
+      <td>794-804</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>328-358</td>
+      <td>उल्लेखसूची</td>
+      <td>Entity List and Details</td>
+      <td>true</td>
+      <td>805-835</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td>Editor</td>
+    </tr>
+    <tr>
+      <td>359</td>
+      <td>लोकमान्य टिळकांची जन्मकुंडली, व राशीकुंडली तथा जन्मकालीन स्पष्टग्रह</td>
+      <td>Lokmanya's Horoscope</td>
+      <td>false</td>
+      <td>836</td>
+      <td>book</td>
+      <td>गीतारहस्य</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td>Editor</td>
+    </tr>
+  </tbody>
+</table>
+
+## लोकमान्यांची ब्रह्मसूत्रांवरील टिपणे
+
+<table>
+  <colgroup>
+    <col width="100" />
+    <col width="247" />
+    <col width="100" />
+    <col width="100" />
+    <col width="133" />
+    <col width="100" />
+    <col width="100" />
+    <col width="235" />
+    <col width="139" />
+  </colgroup>
+  <thead>
+    <tr>
+      <th>PDF Page<br />(Range)</th>
+      <th>Printed Title</th>
+      <th>Type</th>
+      <th>retrieval_relevant</th>
+      <th>Actual Page/<br />Page Range</th>
+      <th>original_source_type</th>
+      <th>original_source_name</th>
+      <th>PDF File Name</th>
+      <th>Author</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>360</td>
+      <td>लोकमान्यांची ब्रह्मसूत्रांवरील टिपणे</td>
+      <td>Front page</td>
+      <td>false</td>
+      <td>-</td>
+      <td>book</td>
+      <td>ब्रह्मसूत्रांवरील टिपणे</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td>Editor</td>
+    </tr>
+    <tr>
+      <td>361</td>
+      <td>-</td>
+      <td>Blank Pages</td>
+      <td>false</td>
+      <td>-</td>
+      <td>book</td>
+      <td>ब्रह्मसूत्रांवरील टिपणे</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td>Editor</td>
+    </tr>
+    <tr>
+      <td>362</td>
+      <td>अनुक्रमणिका</td>
+      <td>TOC</td>
+      <td>false</td>
+      <td>-</td>
+      <td>book</td>
+      <td>ब्रह्मसूत्रांवरील टिपणे</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td>Editor</td>
+    </tr>
+    <tr>
+      <td>363</td>
+      <td>-</td>
+      <td>Blank Pages</td>
+      <td>false</td>
+      <td>-</td>
+      <td>book</td>
+      <td>ब्रह्मसूत्रांवरील टिपणे</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td>Editor</td>
+    </tr>
+    <tr>
+      <td>364-366</td>
+      <td>नव्याने प्रास्ताविक</td>
+      <td>Preface</td>
+      <td>true</td>
+      <td>1-3</td>
+      <td>book</td>
+      <td>ब्रह्मसूत्रांवरील टिपणे</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td>Keshav Pandurang Jog</td>
+    </tr>
+    <tr>
+      <td>367-369</td>
+      <td>प्रास्ताविकं किंचित</td>
+      <td>Preface</td>
+      <td>true</td>
+      <td>4-6</td>
+      <td>book</td>
+      <td>ब्रह्मसूत्रांवरील टिपणे</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td>Vi. Pra. Limaye</td>
+    </tr>
+    <tr>
+      <td>370</td>
+      <td>संक्षेपचिह्नानां विवरणम्</td>
+      <td></td>
+      <td>false</td>
+      <td>7</td>
+      <td>book</td>
+      <td>ब्रह्मसूत्रांवरील टिपणे</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>371-373</td>
+      <td>Tilak's Preface to Brahmasutra</td>
+      <td>Preface</td>
+      <td>true</td>
+      <td>8-10</td>
+      <td>book</td>
+      <td>ब्रह्मसूत्रांवरील टिपणे</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>374-392</td>
+      <td>प्रथमः अध्यायः</td>
+      <td>Chapter</td>
+      <td>true</td>
+      <td>11-29</td>
+      <td>book</td>
+      <td>ब्रह्मसूत्रांवरील टिपणे</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>393-419</td>
+      <td>द्वितीयः अध्यायः</td>
+      <td>Chapter</td>
+      <td>true</td>
+      <td>30-56</td>
+      <td>book</td>
+      <td>ब्रह्मसूत्रांवरील टिपणे</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>420-459</td>
+      <td>तृतीयः अध्यायः</td>
+      <td>Chapter</td>
+      <td>true</td>
+      <td>57-96</td>
+      <td>book</td>
+      <td>ब्रह्मसूत्रांवरील टिपणे</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>460-477</td>
+      <td>चतुर्थः अध्यायः</td>
+      <td>Chapter</td>
+      <td>true</td>
+      <td>97-114</td>
+      <td>book</td>
+      <td>ब्रह्मसूत्रांवरील टिपणे</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>478-484</td>
+      <td>परिशिष्टम्</td>
+      <td>Chapter</td>
+      <td>true</td>
+      <td>115-121</td>
+      <td>book</td>
+      <td>ब्रह्मसूत्रांवरील टिपणे</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>485-513</td>
+      <td>ब्रह्मसूत्रपदसूची</td>
+      <td>Index</td>
+      <td>false</td>
+      <td>122-150</td>
+      <td>book</td>
+      <td>ब्रह्मसूत्रांवरील टिपणे</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>514-518</td>
+      <td>शुद्धिपत्र</td>
+      <td>Errata</td>
+      <td>false</td>
+      <td>151-155</td>
+      <td>book</td>
+      <td>ब्रह्मसूत्रांवरील टिपणे</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+    <tr>
+      <td>519-521</td>
+      <td>-</td>
+      <td>Blank Pages</td>
+      <td>false</td>
+      <td>-</td>
+      <td>book</td>
+      <td>ब्रह्मसूत्रांवरील टिपणे</td>
+      <td>Volume-1-Marathi-part-2.pdf</td>
+      <td>Lokmanya Tilak</td>
+    </tr>
+  </tbody>
+</table>
+
+# Volume 2 - Metadata Analysis
+
+<table>
+  <colgroup>
+    <col width="100" />
+    <col width="247" />
+    <col width="100" />
+    <col width="100" />
+    <col width="133" />
+    <col width="100" />
+    <col width="100" />
+    <col width="235" />
+    <col width="139" />
+    <col width="100" />
+  </colgroup>
+  <thead>
+    <tr>
+      <th>PDF Page<br />(Range)</th>
+      <th>Printed Title</th>
+      <th>Type</th>
+      <th>retrieval_relevant</th>
+      <th>Actual Page/<br />Page Range</th>
+      <th>original_source_type</th>
+      <th>original_source_name</th>
+      <th>PDF File Name</th>
+      <th>Author</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1-2</td>
+      <td>-</td>
+      <td>Blank Pages</td>
+      <td>false</td>
+      <td>-</td>
+      <td>book</td>
       <td>The Orion</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>3</td>
@@ -857,6 +1009,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Orion</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>4</td>
@@ -868,6 +1021,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Orion</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>5</td>
@@ -879,6 +1033,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Orion</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>6</td>
@@ -890,6 +1045,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Orion</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>7</td>
@@ -901,6 +1057,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Orion</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>8</td>
@@ -912,6 +1069,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Orion</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>9</td>
@@ -923,6 +1081,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Orion</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>10</td>
@@ -934,6 +1093,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Orion</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>11-14</td>
@@ -945,6 +1105,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Orion</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>15-21</td>
@@ -956,6 +1117,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Orion</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>22-38</td>
@@ -967,6 +1129,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Orion</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>39-60</td>
@@ -978,6 +1141,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Orion</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>61-86</td>
@@ -989,6 +1153,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Orion</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>87-111</td>
@@ -1000,6 +1165,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Orion</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>112-120</td>
@@ -1011,6 +1177,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Orion</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>121-122</td>
@@ -1022,6 +1189,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td></td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>123-134</td>
@@ -1033,6 +1201,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td></td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>135-165</td>
@@ -1044,6 +1213,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Orion</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>166-183</td>
@@ -1055,6 +1225,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Orion</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td></td>
@@ -1066,6 +1237,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td></td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>184-188</td>
@@ -1077,6 +1249,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Orion</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>189-201</td>
@@ -1088,6 +1261,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Orion</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>202</td>
@@ -1099,6 +1273,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Orion</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>203</td>
@@ -1110,6 +1285,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Arctic Home In The Vedas</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>204</td>
@@ -1121,6 +1297,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Arctic Home In The Vedas</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>205-210</td>
@@ -1132,6 +1309,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Arctic Home In The Vedas</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>211</td>
@@ -1143,6 +1321,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Arctic Home In The Vedas</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>212</td>
@@ -1154,6 +1333,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Arctic Home In The Vedas</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>213-214</td>
@@ -1165,6 +1345,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Arctic Home In The Vedas</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>215-230</td>
@@ -1176,6 +1357,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Arctic Home In The Vedas</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>231-246</td>
@@ -1187,6 +1369,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Arctic Home In The Vedas</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>247-264</td>
@@ -1198,6 +1381,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Arctic Home In The Vedas</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>265-279</td>
@@ -1209,6 +1393,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Arctic Home In The Vedas</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>280-298</td>
@@ -1220,6 +1405,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Arctic Home In The Vedas</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>299</td>
@@ -1231,6 +1417,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Arctic Home In The Vedas</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>300</td>
@@ -1242,6 +1429,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Arctic Home In The Vedas</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>301-306</td>
@@ -1253,6 +1441,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Arctic Home In The Vedas</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>307-316</td>
@@ -1264,6 +1453,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Arctic Home In The Vedas</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>317-336</td>
@@ -1275,6 +1465,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Arctic Home In The Vedas</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>337-368</td>
@@ -1286,6 +1477,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Arctic Home In The Vedas</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>369-405</td>
@@ -1297,6 +1489,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Arctic Home In The Vedas</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>406-416</td>
@@ -1308,6 +1501,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Arctic Home In The Vedas</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>417</td>
@@ -1319,6 +1513,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Arctic Home In The Vedas</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>418-419</td>
@@ -1330,6 +1525,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Arctic Home In The Vedas</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>420</td>
@@ -1341,6 +1537,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Arctic Home In The Vedas</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>421-461</td>
@@ -1352,6 +1549,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Arctic Home In The Vedas</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>462-508</td>
@@ -1363,6 +1561,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Arctic Home In The Vedas</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>509-540</td>
@@ -1374,6 +1573,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Arctic Home In The Vedas</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>541-559</td>
@@ -1385,6 +1585,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Arctic Home In The Vedas</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>560-602</td>
@@ -1396,6 +1597,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Arctic Home In The Vedas</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>603-632</td>
@@ -1407,6 +1609,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Arctic Home In The Vedas</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>633-643</td>
@@ -1418,6 +1621,7 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Arctic Home In The Vedas</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
     </tr>
     <tr>
       <td>644</td>
@@ -1429,6 +1633,79 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td>The Arctic Home In The Vedas</td>
       <td>Volume-2-English.pdf</td>
       <td>Lokmanya Tilak</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>645</td>
+      <td>Vedic Chronology And Vedanga Jyotisha - <br />Containing also essays on Chaldean and Indian Vedas and other miscellaneous essays</td>
+      <td>Title Page</td>
+      <td>false</td>
+      <td>-</td>
+      <td>book</td>
+      <td>Vedic Chronology And Vedanga Jyotisha</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>646-647</td>
+      <td>-</td>
+      <td>Blank Pages</td>
+      <td>false</td>
+      <td>-</td>
+      <td>book</td>
+      <td>Vedic Chronology And Vedanga Jyotisha</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>648</td>
+      <td>CONTENTS</td>
+      <td>TOC</td>
+      <td>false</td>
+      <td>-</td>
+      <td>book</td>
+      <td>Vedic Chronology And Vedanga Jyotisha</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>649-658</td>
+      <td>Chapter 1 - Introduction</td>
+      <td>Chapter</td>
+      <td>true</td>
+      <td>1-10</td>
+      <td>book</td>
+      <td>VEDIC CHRONOLOGY</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>659-664</td>
+      <td>Chapter 2 - The Vedic Calendar</td>
+      <td>Chapter</td>
+      <td>true</td>
+      <td>11-16</td>
+      <td>book</td>
+      <td>VEDIC CHRONOLOGY</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>665-680</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>17-32</td>
+      <td></td>
+      <td>SYNOPSIS OF' VEDIC CHRONOLOGY</td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <td></td>
@@ -1439,6 +1716,95 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
       <td></td>
       <td></td>
       <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+# Volume 3 - Metadata Analysis
+
+## राजकीय लेखसंग्रह
+
+<table>
+  <colgroup>
+    <col width="100" />
+    <col width="247" />
+    <col width="100" />
+    <col width="100" />
+    <col width="133" />
+    <col width="100" />
+    <col width="100" />
+    <col width="235" />
+    <col width="139" />
+  </colgroup>
+  <thead>
+    <tr>
+      <th>PDF Page<br />(Range)</th>
+      <th>Printed Title</th>
+      <th>Type</th>
+      <th>retrieval_relevant</th>
+      <th>Actual Page/<br />Page Range</th>
+      <th>original_source_type</th>
+      <th>original_source_name</th>
+      <th>PDF File Name</th>
+      <th>Author</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1-2</td>
+      <td>-</td>
+      <td>Blank Pages</td>
+      <td>false</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>Volume-3-Marathi-part-1.pdf</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>समग्र लोकमान्य टिळक - खंड ३ - राजकीय लेखसंग्रह</td>
+      <td>Title Page</td>
+      <td>false</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>Volume-3-Marathi-part-1.pdf</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>4-9</td>
+      <td>अनुक्रमणिका</td>
+      <td>TOC</td>
+      <td>false</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>Volume-3-Marathi-part-1.pdf</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>11-18</td>
+      <td>भूमिका</td>
+      <td>Publisher's Note</td>
+      <td>true</td>
+      <td>3-10</td>
+      <td>-</td>
+      <td>-</td>
+      <td>Volume-3-Marathi-part-1.pdf</td>
+      <td>Publisher</td>
+    </tr>
+    <tr>
+      <td>19</td>
+      <td>इंग्रजी राज्याची समीक्षा</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>Volume-3-Marathi-part-1.pdf</td>
       <td></td>
     </tr>
     <tr>
@@ -1455,8 +1821,193 @@ chunk_sequence_in_unit: int    # ordering within the unit, separate from pdf_pag
   </tbody>
 </table>
 
-# Volume 3 - Metadata Analysis
-
-First article starting page - 3
-
-First article starting pdf page - 21
+| PDF Page (Range) | editorial_theme | Printed Title | Date | Type | retrieval_relevant | Actual Page/Page Range | original_source_type | original_source_name | PDF File Name | Author |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1-2 |  |  |  |  |  |  |  |  |  |  |
+| 3 |  |  |  |  |  |  |  |  |  |  |
+| 4-9 |  |  |  |  |  |  |  |  |  |  |
+| 11-18 |  |  |  |  |  |  |  |  |  |  |
+| 19 |  |  |  |  |  |  |  |  |  |  |
+| 21-23 | इंग्रजी राज्याची समीक्षा | इंग्रजी राज्यांत आम्हांस फायदा काय झाला ? |  | Editorial/अग्रलेख | true | 3-5 | newspaper | Kesari | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 24-29 | इंग्रजी राज्याची समीक्षा | आमच्यावर जुल्म कसा होतो? |  | article | true | 6-11 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 30-34 | इंग्रजी राज्याची समीक्षा | राजधर्माचे नवे उपदेशक – यांतील बीज काय |  | article | true | 12-16 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 35-38 | इंग्रजी राज्याची समीक्षा | नेटिव्ह लोकांसाठीं निरनिराळ्या काढलेल्या जागा |  | article | true | 17-20 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 39-43 | इंग्रजी राज्याची समीक्षा | हिंदुस्थानचा कारभार |  | article | true | 21-25 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 44-48 | इंग्रजी राज्याची समीक्षा | हिंदुस्थानांतल्या प्रजेची अस्वस्थता |  | article | true | 26-30 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 49-52 | इंग्रजी राज्याची समीक्षा | महाराणी-सरकारचा जयजयकार – १ |  | article | true | 31-34 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 53-57 | इंग्रजी राज्याची समीक्षा | महाराणी-सरकारचा जयजयकार – २ |  | article | true | 35-39 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 58-63 | इंग्रजी राज्याची समीक्षा | महाराणी-सरकारचा जयजयकार – ३ |  | article | true | 40-45 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 64-68 | इंग्रजी राज्याची समीक्षा | महाराणी-सरकारची कारकीर्द |  | article | true | 46-50 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 69-72 | इंग्रजी राज्याची समीक्षा | भरभराटलेलें इंग्रजी हिंदुस्थान |  | article | true | 51-54 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 73-79 | इंग्रजी राज्याची समीक्षा | अनावर राज्यविस्तार |  | article | true | 55-61 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 80-85 | इंग्रजी राज्याची समीक्षा | हिंदुस्थानची अंतर्व्यवस्था |  | article | true | 62-67 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 86-91 | इंग्रजी राज्याची समीक्षा | कंपनी सरकार व इंग्रज सरकार |  | article | true | 68-73 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 92-97 | इंग्रजी राज्याची समीक्षा | आमचीं मनेंच फिरलीं पाहिजेत ! |  | article | true | 74-79 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 98-99 | इंग्रजी राज्याची समीक्षा | दिल्ली दरबार |  | article | true | 80-81 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 100-107 | इंग्रजी राज्याची समीक्षा | दिल्लीचा बडा दरबार |  | article | true | 82-89 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 108-113 | इंग्रजी राज्याची समीक्षा | सार्वभौम दरबार आणि एतद्देशीय राजवाडे |  | article | true | 90-95 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 114-120 | इंग्रजी राज्याची समीक्षा | उत्तम गुराखी कोण ? |  | article | true | 96-102 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 121-133 | इंग्रजी राज्याची समीक्षा | आशेची निराशा आणि निराशेची आशा |  | article | true | 103-115 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 134-137 | शिक्षण | लष्करी शिक्षणाची शाळा |  | article | true | 116-119 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 138-144 | शिक्षण | नेटिव्ह व्हाइस चान्सेलरांचें पहिलें भाषण |  | article | true | 120-126 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 145-149 | शिक्षण | देशी भाषांस उत्तेजन देण्यास युनिव्हर्सिटीनें काय केलें पाहिजे ? |  | article | true | 127-131 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 150-153 | शिक्षण | देशी भाषांची दैना |  | article | true | 132-135 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 154-157 | शिक्षण | खरें विद्यापीठ कोणतें ? |  | article | true | 136-139 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 158-162 | शिक्षण | युनिव्हर्सिट्या ऊर्फ सरकारी हमालखाने |  | article | true | 140-144 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 163-165 | शिक्षण | युनिव्हर्सिटी बिल |  | article | true | 145-147 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 166-171 | शिक्षण | जुन्या विद्यापीठांची आरती ! |  | article | true | 148-153 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 172-176 | शिक्षण | धूर्त कोण आणि फसला कोण ? |  | article | true | 154-158 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 177-182 | शिक्षण | खाजगी शिक्षणावरील सरकारची करडी नजर |  | article | true | 159-164 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 183-187 | शिक्षण | नामदार जाइल्ससाहेब यांचें राजद्रोहाचें पिसें |  | article | true | 165-169 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 188-194 | शिक्षण | नामदार जाइल्स यांचीं मुक्ताफळें |  | article | true | 170-176 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 195-199 | शिक्षण | नामदार जाइल्ससाहेब यांची ओवाळणी |  | article | true | 177-181 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 200-204 | शिक्षण | मि. मलबारी, ना. मि. जाइल्स व सरकार |  | article | true | 182-186 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 205-209 | शिक्षण | हिंदुस्थानांतील शिक्षणाची दिशा |  | article | true | 187-191 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 210-212 | शिक्षण | शिक्षणाचीं उद्दिष्टें |  | article | true | 192-194 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 213-217 | शिक्षण | सुशिक्षितांचीं कर्तव्यें |  | article | true | 195-199 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 218-222 | शिक्षण | ब्रिटिश सरकार व लोकशिक्षण |  | article | true | 200-204 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 223-228 | शिक्षण | धंदेशिक्षण आणि सरकार |  | article | true | 205-210 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 229-233 | शिक्षण | दहाच स्कॉलर्शिपा |  | article | true | 211-215 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 234-238 | शिक्षण | हिंदुस्थान सरकारचा शिक्षणावरील नवा ठराव |  | article | true | 216-220 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 239-243 | शिक्षण | कृषिशिक्षण व धंदेशिक्षण |  | article | true | 221-225 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 244-248 | शिक्षण | राष्ट्रीय नीतिमत्ता आणि बादशाही अरेरावी |  | article | true | 226-230 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 249-254 | शिक्षण | हे आमचे गुरूच नव्हेत ? – १ |  | article | true | 231-236 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 255-260 | शिक्षण | हे आमचे गुरूच नव्हेत ! – २ |  | article | true | 237-242 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 261-267 | शिक्षण | हे आमचे गुरूच नव्हेत ! – ३ |  | article | true | 243-249 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 268-272 | शिक्षण | राष्ट्रीय शिक्षण व खासगी शाळांची जबाबदारी – १ |  | article | true | 250-254 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 273-278 | शिक्षण | राष्ट्रीय शिक्षण व खासगी शाळांची जबाबदारी – २ |  | article | true | 255-260 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 279-284 | शिक्षण | राष्ट्रीय शिक्षण व खासगी शाळांची जबाबदारी – ३ |  | article | true | 261-266 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 285-292 | शिक्षण | दुमजली इमारतीचा पुंडावा |  | article | true | 267-274 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 293-300 | शिक्षण | चतकोर भाकरीची गुलामगिरी ! |  | article | true | 275-282 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 301-304 | शेती व शेतकरी | शेतकऱ्यांचा कायदा |  | article | true | 283-286 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 305-307 | शेती व शेतकरी | हें सारा वाढविणें कीं जुल्म ? |  | article | true | 287-289 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 308-312 | शेती व शेतकरी | हिंदुस्थानांतील शेतकरी लोकांस खरोखरच बंद करावें लागेल काय ? – १ |  | article | true | 290-294 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 313-317 | शेती व शेतकरी | हिंदुस्थानांतील शेतकरी लोकांस खरोखरच बंद करावें लागेल काय ? – २ |  | article | true | 295-299 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 318-321 | शेती व शेतकरी | शेतकऱ्यांच्या कमिशननें काय केलें ? |  | article | true | 300-303 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 322-325 | शेती व शेतकरी | शेतकऱ्यांच्या कमिशननें सुचविलेले उपाय |  | article | true | 304-307 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 326-331 | शेती व शेतकरी | फेरपहाणीचा जुल्म |  | article | true | 308-313 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 332-336 | शेती व शेतकरी | शेतकऱ्यांनों व सावकारांनों, सावध व्हा ! |  | article | true | 314-318 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 337-342 | शेती व शेतकरी | जमिनीची मालकी बुडाली ! |  | article | true | 319-324 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 343-347 | शेती व शेतकरी | सावकार मेला आणि कुणबीहि मेला ! |  | article | true | 325-329 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 348-352 | शेती व शेतकरी | खालसा जमीन कोणाची ? |  | article | true | 330-334 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 353-357 | शेती व शेतकरी | बिलाचें तत्त्वच आम्हांस मान्य नाहीं |  | article | true | 335-339 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 358-361 | शेती व शेतकरी | नवीन बिल व लोकमत |  | article | true | 340-343 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 362-363 | शेती व शेतकरी | जमीन-महसूल बिलाचें दुसरें वाचन |  | article | true | 344-345 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 364-367 | शेती व शेतकरी | उठा, अजून वेळ गेली नाहीं |  | article | true | 346-349 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 368-371 | शेती व शेतकरी | नवीन बिलाची आरती |  | article | true | 350-353 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 372-373 | शेती व शेतकरी | जमीनमहसूल कायदा-दुरुस्ती बिलाचें वाचन |  | article | true | 354-355 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 374-378 | शेती व शेतकरी | दुराग्रही सरकार आणि निर्बल लोकमत ! |  | article | true | 356-360 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 379-383 | शेती व शेतकरी | जमीनमहसुलाचा कायदा झाला ! |  | article | true | 361-365 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 384-387 | शेती व शेतकरी | जमिनीच्या हक्काची नोंद ऊर्फ जमिनीची खानेसुमारी – १ |  | article | true | 366-369 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 388-390 | शेती व शेतकरी | जमिनीच्या हक्काची नोंद ऊर्फ जमिनीची खानेसुमारी – २ |  | article | true | 370-372 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 391-396 | शेती व शेतकरी | मुंबई इलाख्यांतील जमीनधाऱ्याची पद्धत |  | article | true | 373-378 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 397-401 | शेती व शेतकरी | मुंबईच्या शेतकीखात्याची सुधारणा |  | article | true | 379-383 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 402-406 | शेती व शेतकरी | शेतकऱ्यांच्या व कारागिरांच्या परस्पर साहाय्यकारी पेढ्या |  | article | true | 384-388 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 407-412 | शेती व शेतकरी | शेतकऱ्यांच्या परस्पर साहाय्यकारी पेढ्या |  | article | true | 389-394 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 413-418 | शेती व शेतकरी | परस्पर साहाय्यकारी पेढ्या |  | article | true | 395-400 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 419-423 | खोतांचे हक्क | खोतीच्या हक्कावर घाला – १ |  | article | true | 401-405 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 424-428 | खोतांचे हक्क | खोतीच्या हक्कावर घाला – २ |  | article | true | 406-410 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 429-432 | खोतांचे हक्क | खोतीच्या हक्कावर घाला – ३ |  | article | true | 411-414 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 433-437 | खोतांचे हक्क | खोतीच्या हक्कावर घाला – ४ |  | article | true | 415-419 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 438-443 | खोतांचे हक्क | खोतीच्या हक्कावर घाला – ५ |  | article | true | 420-425 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 444-447 | खोतांचे हक्क | खोतीच्या हक्कावर घाला – ६ |  | article | true | 426-429 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 448-456 | खोतांचे हक्क | नवें खोती-बिल |  | article | true | 430-438 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 457-460 | दुष्काळ-निवारण | दुष्काळ |  | article | true | 439-442 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 461-463 | दुष्काळ-निवारण | दुष्काळाचें स्वरूप |  | article | true | 443-445 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 464-468 | दुष्काळ-निवारण | दुष्काळाचीं कारणें |  | article | true | 446-450 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 469-471 | दुष्काळ-निवारण | दुष्काळनिवारण्याची तयारी |  | article | true | 451-453 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 472-477 | दुष्काळ-निवारण | दुष्काळनिवारण्याचे मार्ग |  | article | true | 454-459 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 478-482 | दुष्काळ-निवारण | दुष्काळाची व्यवस्था |  | article | true | 460-464 |  |  | Volume-3-Marathi-part-1.pdf | Bal Gangadhar Tilak |
+| 1-2 | दुष्काळ-निवारण | पोलिसांच्या पेटलेल्या बंदुकीच्या टप्प्यांत भरलेली रयतेची जंगी सभा |  | article | true | 465-468 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 3-6 | दुष्काळ-निवारण | ह्या वेळीं तालुक्यांतील पुढारी लोकांचें कर्तव्य |  | article | true | 469-472 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 7-10 | दुष्काळ-निवारण | जमिनीच्या साऱ्याची तहकुबी व सूट |  | article | true | 473-476 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 11-13 | दुष्काळ-निवारण | साऱ्याच्या तहकुबीबद्दल सरकारचा ठराव |  | article | true | 477-479 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 14-17 | दुष्काळ-निवारण | साऱ्याच्या तहकुबीची व सुटीची हकीगत |  | article | true | 480-483 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 18-25 | दुष्काळ-निवारण | दुष्काळांत साऱ्याची तहकुबी व सूट |  | article | true | 484-491 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 26-29 | दुष्काळ-निवारण | दुष्काळांत साऱ्याची तहकुबी |  | article | true | 492-495 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 30-33 | दुष्काळ-निवारण | साऱ्याची सूट व तहकुबी |  | article | true | 496-499 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 34-37 | दुष्काळ-निवारण | लॉर्ड नॉर्थकोट यांचे दुष्काळ-व्यवस्थेबद्दलचे विचार |  | article | true | 500-503 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 38-42 | दुष्काळ-निवारण | तेरा मुद्द्यांचा पुरावा |  | article | true | 504-508 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 43-48 | दुष्काळ-निवारण | शेतसाऱ्याची वाढ व दुष्काळाची पीडा – १ |  | article | true | 509-514 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 49-53 | दुष्काळ-निवारण | शेतसाऱ्याची वाढ व दुष्काळाची पीडा – २ |  | article | true | 515-519 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 54-57 | दुष्काळ-निवारण | शेतसाऱ्याची वाढ व दुष्काळाची पीडा – ३ |  | article | true | 520-523 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 58-62 | दुष्काळ-निवारण | शेतसाऱ्याची वाढ व दुष्काळाची पीडा – ४ |  | article | true | 524-528 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 63-67 | दुष्काळ-निवारण | डोंगर पोखरून उंदीर निघाला |  | article | true | 529-533 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 68-74 | दुष्काळ-निवारण | दुष्काळ-कोडाची फिरून एकवार दुरुस्ती |  | article | true | 534-540 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 75-80 | आर्थिक धोरण | सोन्या-रुप्याचें नाणें – १ |  | article | true | 541-546 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 81-85 | आर्थिक धोरण | सोन्या-रुप्याचें नाणें – २ |  | article | true | 547-551 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 86-92 | आर्थिक धोरण | सोन्या-रुप्याचें नाणें – ३ |  | article | true | 552-558 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 93-98 | आर्थिक धोरण | सोन्या-रुप्याचें नाणें – ४ |  | article | true | 559-564 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 99-104 | आर्थिक धोरण | सोन्या-रुप्याचें नाणें – ५ |  | article | true | 565-570 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 105-109 | आर्थिक धोरण | सोन्या-रुप्याची लढाई |  | article | true | 571-575 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 110-119 | आर्थिक धोरण | चांदी, रुपये आणि पौंड |  | article | true | 576-585 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 120-124 | आर्थिक धोरण | राज्यकारभारांतील उधळेगिरीचा खर्च |  | article | true | 586-590 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 125-128 | आर्थिक धोरण | हिंदुस्थानची दैना |  | article | true | 591-594 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 129-132 | आर्थिक धोरण | हिंदुस्थानच्या जमाखर्चाचा खर्डा |  | article | true | 595-598 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 133-136 | आर्थिक धोरण | मि. दादाभाई नवरोजी यांची रॉयल कमिशनपुढील साक्ष |  | article | true | 599-602 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 137-140 | आर्थिक धोरण | मि. दिनशा ए. वाच्छा यांची रॉयल कमिशनपुढील साक्ष |  | article | true | 603-606 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 141-144 | आर्थिक धोरण | रॉयल कमिशनपुढें प्रो. गोखले यांची झालेली साक्ष |  | article | true | 607-610 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 145-148 | आर्थिक धोरण | हिंदुस्थानचें ओझें |  | article | true | 611-614 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 149-152 | आर्थिक धोरण | हिंदुस्थानचें दारिद्र्य |  | article | true | 615-618 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 153-157 | आर्थिक धोरण | ११० कोटि रुपया कसा उडतो ! |  | article | true | 619-623 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 158-162 | आर्थिक धोरण | लष्करी खर्चाचें ओझें कमी होण्याची आशा आहे काय ? |  | article | true | 624-628 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 163-166 | आर्थिक धोरण | लष्करी खर्चाचें ओझें |  | article | true | 629-632 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 167-171 | आर्थिक धोरण | हिंदुस्थानच्या भरभराटीची दंतकथा |  | article | true | 633-637 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 172-176 | आर्थिक धोरण | आणखी गोरें सैन्य पाहिजे ! |  | article | true | 638-642 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 177-183 | आर्थिक धोरण | कराची सूट आणि बाकीची लूट |  | article | true | 643-649 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 184-190 | आर्थिक धोरण | मुंबई इलाख्याचें बजेट |  | article | true | 650-656 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 191-196 | आर्थिक धोरण | मुंबई इलाख्याच्या जमाखर्चाचा मक्ता |  | article | true | 657-662 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 197-203 | आर्थिक धोरण | मुंबई इलाख्याच्या जमाखर्चाचा खर्डा |  | article | true | 663-669 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 204-210 | आर्थिक धोरण | सरकार-सरकारचें भांडण |  | article | true | 670-676 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 211-214 | आद्योगिक विकास | पुण्यांतील पहिली चिमणी |  | article | true | 677-680 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 215-219 | आद्योगिक विकास | औद्योगिक पारतंत्र्य |  | article | true | 681-685 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 220-226 | आद्योगिक विकास | उद्योगधंदे व व्यापार |  | article | true | 686-692 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 227-233 | आद्योगिक विकास | आमचे उद्योगधंदे कसे ठार झाले ? |  | article | true | 693-699 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 234-239 | आद्योगिक विकास | सुताचा व विणकामाचा धंदा – १ |  | article | true | 700-705 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 240-246 | आद्योगिक विकास | सुताचा व विणकामाचा धंदा – २ |  | article | true | 706-712 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 247-252 | आद्योगिक विकास | महाराष्ट्र आणि मॉरिशस – गूळ का साखर ? |  | article | true | 713-718 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 253-260 | आद्योगिक विकास | पैसा-फंड |  | article | true | 719-726 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 261-263 | नोकरशाहीशीं संघर्ष | क्रॉफर्ड-प्रकरण – १ |  | article | true | 727-729 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 264-266 | नोकरशाहीशीं संघर्ष | क्रॉफर्ड-प्रकरण – २ |  | article | true | 730-732 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 267-270 | नोकरशाहीशीं संघर्ष | क्रॉफर्ड-प्रकरणाचा शेवट |  | article | true | 733-736 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 271-274 | नोकरशाहीशीं संघर्ष | नेटिव्ह कामदारांची नीतिमत्ता |  | article | true | 737-740 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 275-278 | नोकरशाहीशीं संघर्ष | हाच न्याय काय ? |  | article | true | 741-744 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 279-281 | नोकरशाहीशीं संघर्ष | क्रॉफर्ड-प्रकरणावरील आक्षेप |  | article | true | 745-747 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 282-284 | नोकरशाहीशीं संघर्ष | क्रॉफर्ड-प्रकरणाचें स्वरूप |  | article | true | 748-750 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 285-288 | नोकरशाहीशीं संघर्ष | विश्वासघात |  | article | true | 751-754 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 289-295 | नोकरशाहीशीं संघर्ष | परवश झालेल्या नेटिव्ह अंमलदारांचें मानसिक दौर्बल्य |  | article | true | 755-761 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 296-299 | नोकरशाहीशीं संघर्ष | परंतु करतो कोण ? |  | article | true | 762-765 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 300-304 | नोकरशाहीशीं संघर्ष | मि. फिरोजशहा मेथा व सर वेस्टलंड यांचे दोन हात |  | article | true | 766-770 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 305-309 | नोकरशाहीशीं संघर्ष | लॅन्सडाउनसाहेबांची शेवटची सलामी |  | article | true | 771-775 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 310-314 | नोकरशाहीशीं संघर्ष | राज्यकारभार कसा चालवावा ? |  | article | true | 776-780 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 315-319 | नोकरशाहीशीं संघर्ष | सर रिचर्ड गार्थ यांचे हिंदुस्थानच्या सद्यःस्थितीसंबंधीं विचार |  | article | true | 781-785 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 320-324 | नोकरशाहीशीं संघर्ष | आगंतुक अधिकाराची थोरवी तितपतच ! |  | article | true | 786-790 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 325-329 | नोकरशाहीशीं संघर्ष | लॉर्ड हॅरिस यांचें स्मारक |  | article | true | 791-795 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 330-334 | नोकरशाहीशीं संघर्ष | लॉर्ड हॅरिस यांच्या स्मारकाचें स्वरूपाविष्करण |  | article | true | 796-800 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 335-338 | नोकरशाहीशीं संघर्ष | लॉर्ड हॅरिस यांची आरती |  | article | true | 801-804 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 339-343 | नोकरशाहीशीं संघर्ष | लॉर्ड सँडहर्स्ट यांच्या कारकीर्दीचा अंदाज |  | article | true | 805-809 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 344-347 | नोकरशाहीशीं संघर्ष | स्वागतपर मानपत्रें व त्यांस उत्तर |  | article | true | 810-813 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 348-352 | नोकरशाहीशीं संघर्ष | लॉर्ड सँडहर्स्ट यांची कारकीर्द – १ |  | article | true | 814-818 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 353-359 | नोकरशाहीशीं संघर्ष | लॉर्ड सँडहर्स्ट यांची कारकीर्द – २ |  | article | true | 819-825 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 360-366 | नोकरशाहीशीं संघर्ष | लॉर्ड सँडहर्स्ट यांची कारकीर्द – ३ |  | article | true | 826-832 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 367-372 | नोकरशाहीशीं संघर्ष | लॉर्ड सँडहर्स्ट यांची कारकीर्द – ४ |  | article | true | 833-838 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 373-377 | नोकरशाहीशीं संघर्ष | लॉर्ड सँडहर्स्टच्या प्रभावळींतील मंडळी |  | article | true | 839-843 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 378-382 | नोकरशाहीशीं संघर्ष | लॉर्ड कर्झन यांचीं बारा महत्कृत्यें |  | article | true | 844-848 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 383-386 | नोकरशाहीशीं संघर्ष | कमिशनांचा हंगाम |  | article | true | 849-852 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 387-394 | नोकरशाहीशीं संघर्ष | व्हाइसरॉयसाहेबांच्या शिळोप्याच्या चार गप्पा |  | article | true | 853-860 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 395-399 | नोकरशाहीशीं संघर्ष | आमचे बोलघेवडे व्हाइसरॉय |  | article | true | 861-865 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 400-406 | नोकरशाहीशीं संघर्ष | लॉर्ड कर्झन यांचा विद्यापीठाधिपति या नात्यानें विद्यार्थिजनांस उपदेश |  | article | true | 866-872 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 407-409 | नोकरशाहीशीं संघर्ष | लॉर्ड कर्झनसाहेबांचा उपदेश (उलट बाजू) |  | article | true | 873-875 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 410-416 | नोकरशाहीशीं संघर्ष | खोटें कोणें ? |  | article | true | 876-882 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 417-424 | नोकरशाहीशीं संघर्ष | लॉर्ड कर्झन यांची कारकीर्द |  | article | true | 883-890 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 425-427 | नोकरशाहीशीं संघर्ष | मॉटिथसाहेबांची कारकीर्द |  | article | true | 891-893 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 428-433 | नोकरशाहीशीं संघर्ष | भ्रमाचा भोपळा लवकरच फुटला ! |  | article | true | 894-899 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 434-438 | नोकरशाहीशीं संघर्ष | सहानुभूतीचा पूर ! |  | article | true | 900-904 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 439-443 | नोकरशाहीशीं संघर्ष | तत्त्ववेत्ता आणि मुत्सद्दी |  | article | true | 905-909 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 444-448 | नोकरशाहीशीं संघर्ष | भिल्ल आणि मोंलें |  | article | true | 910-914 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 449-457 | नोकरशाहीशीं संघर्ष | कबूल वा नाकबूल |  | article | true | 915-923 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 458-463 | नोकरशाहीशीं संघर्ष | दिल्ली परिषदेंत काय झालें ? – भपका, निराशा व दुराग्रह ! |  | article | true | 924-929 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 464-470 | नोकरशाहीशीं संघर्ष | लॉर्ड बुइलिंग्डन यांचा अत्याचार |  | article | true | 930-936 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 471-478 | नोकरशाहीशीं संघर्ष | देशाचें दुर्दैव !! |  | article | true | 937-944 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 479-480 | नोकरशाहीशीं संघर्ष | बॉंब-गोळ्यांचा अनर्थ |  | article | true | 945-946 |  |  | Volume-3-Marathi-part-2.pdf | Bal Gangadhar Tilak |
+| 481-? |  | उल्लेख-सूचि |  | index | false | 947-? |  |  | Volume-3-Marathi-part-2.pdf |  |
